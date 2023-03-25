@@ -21,14 +21,14 @@ describe('PokemonService', () => {
   });
 
 
-  it('should get total number of pokemons', waitForAsync(() => {
+  it('should get number of pokemons', waitForAsync(() => {
     const pokemonResultApi = {
       results: [
         'Bulbizare', 'Herbizarre', 'Florizarre'
       ]
     }
 
-    service.getTotalNumberOfPokemons().subscribe(args => {
+    service.getNumberOfPokemons().subscribe(args => {
       expect(args).toEqual(3);
     });
 

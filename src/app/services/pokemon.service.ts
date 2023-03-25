@@ -13,7 +13,7 @@ export class PokemonService {
   constructor(private http: HttpClient) {
   }
 
-  getTotalNumberOfPokemons(): Observable<number> {
+  getNumberOfPokemons(): Observable<number> {
     return this.http.get<PokemonResultApi>(`${environment.apiUrl}/pokemon/?limit=${this.LIMIT_NUMBER_OF_POKEMONS}`)
       .pipe(map((pokemonResultApi: PokemonResultApi) => pokemonResultApi.results.length));
   }
