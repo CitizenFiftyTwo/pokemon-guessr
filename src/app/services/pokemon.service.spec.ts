@@ -33,7 +33,7 @@ describe('PokemonService', () => {
     });
 
     const req = httpMock.expectOne((request: HttpRequest<PokemonResultApi>) =>
-      request.urlWithParams === `${environment.apiUrl}/pokemon/?limit=3000`
+      request.urlWithParams === `${environment.apiUrl}/pokemon-species/?limit=3000`
     );
     expect(req.request.method).toEqual('GET');
     req.flush(pokemonResultApi);

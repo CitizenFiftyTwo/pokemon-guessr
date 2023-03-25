@@ -14,9 +14,10 @@ export class PokemonService {
   }
 
   getNumberOfPokemons(): Observable<number> {
-    return this.http.get<PokemonResultApi>(`${environment.apiUrl}/pokemon/?limit=${this.LIMIT_NUMBER_OF_POKEMONS}`)
+    return this.http.get<PokemonResultApi>(`${environment.apiUrl}/pokemon-species/?limit=${this.LIMIT_NUMBER_OF_POKEMONS}`)
       .pipe(map((pokemonResultApi: PokemonResultApi) => pokemonResultApi.results.length));
   }
+
 }
 
 export interface PokemonResultApi {
