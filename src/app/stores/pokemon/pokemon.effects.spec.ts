@@ -6,7 +6,9 @@ import { PokemonEffects } from "./pokemon.effects";
 import {
   LoadNumberOfPokemonsAction,
   LoadNumberOfPokemonsFailureAction,
-  LoadNumberOfPokemonsSuccessAction
+  LoadNumberOfPokemonsSuccessAction,
+  LoadPokemonNameAction,
+  LoadPokemonNameSuccessAction
 } from "./pokemon.action";
 import { cold, hot } from "jasmine-marbles";
 
@@ -16,7 +18,7 @@ describe('PokemonEffects', () => {
   let effects: PokemonEffects;
 
   beforeEach(() => {
-    pokemonServiceSpy = jasmine.createSpyObj('PokemonService', ['getNumberOfPokemons']);
+    pokemonServiceSpy = jasmine.createSpyObj('PokemonService', ['getNumberOfPokemons', 'getPokemonName']);
 
     TestBed.configureTestingModule({
       providers: [
@@ -54,4 +56,19 @@ describe('PokemonEffects', () => {
       expect(effects.loadNumberOfPokemons$).toBeObservable(cold('-c', {c: expectedAction}));
     });
   });
+
+  describe('Load pokemon name', () => {
+    const action = LoadPokemonNameAction({pokemonIndex: 0});
+
+    it('should dispatch success with pokemon name', () => {
+      pokemonServiceSpy.getPokemonName.and.returnValue(cold('-b', {b: 'bulbizarre'}));
+      const expectedAction = LoadPokemonNameSuccessAction({pokemonName: 'bulbizarre'});
+
+      actions$ = hot('a', {a: action});
+
+      expect(effects.loadPokemonName$).toBeObservable(cold('-c', {c: expectedAction}));
+      expect(pokemonServiceSpy.getPokemonName).toHaveBeenCalledWith(0);
+    });
+  });
+
 });

@@ -3,9 +3,11 @@ import { catchError, map, mergeMap, Observable, of } from "rxjs";
 import { PokemonService } from "../../services/pokemon.service";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import {
+  LoadNumberOfPokemonsAction,
   LoadNumberOfPokemonsFailureAction,
   LoadNumberOfPokemonsSuccessAction,
-  PokemonActionTypes
+  LoadPokemonNameAction,
+  LoadPokemonNameSuccessAction
 } from "./pokemon.action";
 import { Action } from "@ngrx/store";
 
@@ -19,10 +21,21 @@ export class PokemonEffects {
   }
 
   loadNumberOfPokemons$: Observable<Action> = createEffect(() => this.actions$.pipe(
-    ofType(PokemonActionTypes.LOAD_NUMBER_OF_POKEMONS),
+    ofType(LoadNumberOfPokemonsAction),
     mergeMap(() => this.pokemonService.getNumberOfPokemons()
       .pipe(
         map(numberOfPokemons => LoadNumberOfPokemonsSuccessAction({numberOfPokemons})),
+        catchError(() => of(LoadNumberOfPokemonsFailureAction()))
+      )
+    )
+  ));
+
+  loadPokemonName$: Observable<Action> = createEffect(() => this.actions$.pipe(
+    ofType(LoadPokemonNameAction),
+    mergeMap((action) => this.pokemonService.getPokemonName(action.pokemonIndex)
+      .pipe(
+        // TODO: Handle undefined
+        map(pokemonName => LoadPokemonNameSuccessAction({pokemonName: pokemonName || ''})),
         catchError(() => of(LoadNumberOfPokemonsFailureAction()))
       )
     )
