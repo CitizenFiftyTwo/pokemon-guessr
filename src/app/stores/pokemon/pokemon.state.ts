@@ -13,6 +13,8 @@ export const PokemonInitialState: PokemonState = {
 
 const pokemonState = (state: AppState): PokemonState => state.pokemon as PokemonState;
 
-export const selectNumberOfPokemons = createSelector(pokemonState, (state: PokemonState) => {
-  return state.numberOfPokemons
-});
+export const selectNumberOfPokemons = createSelector(pokemonState, (state: PokemonState) =>
+  state.numberOfPokemons);
+
+export const selectPokemonName = createSelector(pokemonState, (state: PokemonState) =>
+  state.pokemonName);

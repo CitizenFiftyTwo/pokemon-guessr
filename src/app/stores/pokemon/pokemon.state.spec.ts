@@ -1,5 +1,5 @@
 import { AppState } from "../../app.ngrx";
-import { PokemonState, selectNumberOfPokemons } from "./pokemon.state";
+import { PokemonState, selectNumberOfPokemons, selectPokemonName } from "./pokemon.state";
 
 describe('PokemonState', () => {
   let appState: AppState;
@@ -8,7 +8,7 @@ describe('PokemonState', () => {
   beforeEach(() => {
     initialState = {
       numberOfPokemons: 151,
-      pokemonName: ''
+      pokemonName: 'tortank'
     };
 
     appState = {
@@ -20,5 +20,11 @@ describe('PokemonState', () => {
     const numberOfPokemons = selectNumberOfPokemons(appState);
 
     expect(numberOfPokemons).toEqual(151);
+  });
+
+  it('should select pokemon name', () => {
+    const pokemonName = selectPokemonName(appState);
+
+    expect(pokemonName).toEqual('tortank');
   });
 });
