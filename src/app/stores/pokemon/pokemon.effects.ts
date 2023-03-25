@@ -34,8 +34,7 @@ export class PokemonEffects {
     ofType(LoadPokemonNameAction),
     mergeMap((action) => this.pokemonService.getPokemonName(action.pokemonIndex)
       .pipe(
-        // TODO: Handle undefined
-        map(pokemonName => LoadPokemonNameSuccessAction({pokemonName: pokemonName || ''})),
+        map(pokemonName => LoadPokemonNameSuccessAction({pokemonName: pokemonName})),
         catchError(() => of(LoadNumberOfPokemonsFailureAction()))
       )
     )

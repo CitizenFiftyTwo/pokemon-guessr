@@ -19,11 +19,17 @@ export class PokemonService {
       .pipe(map((result: PokemonSpeciesApiMultipleResult) => result.results.length));
   }
 
-  getPokemonName(pokemonIndex: number): Observable<string | undefined> {
+  getPokemonName(pokemonIndex: number): Observable<string> {
     return this.http.get<PokemonSpeciesApiSingleResult>(`${environment.apiUrl}/pokemon-species/${pokemonIndex + 1}`)
-      .pipe(map((result: PokemonSpeciesApiSingleResult) => result.names.find(name => name.language === this.LANGUAGE_FR)?.name));
+      .pipe(map((result: PokemonSpeciesApiSingleResult) => {
+        const pokemonName = result.names.find(name => name.language === this.LANGUAGE_FR)
+        if (!pokemonName) {
+          throw new Error(`Pokemon has no name for language ${this.LANGUAGE_FR}`)
+        } else {
+          return pokemonName.name
+        }
+      }));
   }
-
 }
 
 interface PokemonSpeciesApiMultipleResult {

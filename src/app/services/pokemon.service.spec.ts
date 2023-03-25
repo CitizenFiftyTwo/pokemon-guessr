@@ -64,5 +64,32 @@ describe('PokemonService', () => {
       expect(req.request.method).toEqual('GET');
       req.flush(apiResult);
     }));
+
+    it('should throw an error when pokemon has no french name', waitForAsync(() => {
+      const apiResult = {
+        names: [
+          {
+            language: 'en',
+            name: 'bulbasaur'
+          }
+        ]
+      }
+
+      service.getPokemonName(0).subscribe({
+        next: () => {
+          fail('Expected an error to be thrown');
+        },
+        error: (err) => {
+          expect(err).toBeInstanceOf(Error);
+          expect(err.message).toEqual(`Pokemon has no name for language fr`);
+        },
+      });
+
+      const req = httpMock.expectOne((request: HttpRequest<any>) =>
+        request.urlWithParams === `${environment.apiUrl}/pokemon-species/1`
+      );
+      expect(req.request.method).toEqual('GET');
+      req.flush(apiResult);
+    }));
   })
 });
