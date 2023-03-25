@@ -7,7 +7,8 @@ describe('PokemonState', () => {
 
   beforeEach(() => {
     initialState = {
-      numberOfPokemons: 151
+      numberOfPokemons: 151,
+      pokemonName: ''
     };
 
     appState = {

@@ -1,7 +1,11 @@
 import { PokemonInitialState, PokemonState } from "./pokemon.state";
 import { pokemonReducer } from "./pokemon.reducer";
 import { INIT } from "@ngrx/store";
-import { LoadNumberOfPokemonsFailureAction, LoadNumberOfPokemonsSuccessAction } from "./pokemon.action";
+import {
+  LoadNumberOfPokemonsFailureAction,
+  LoadNumberOfPokemonsSuccessAction,
+  LoadPokemonNameSuccessAction
+} from "./pokemon.action";
 
 describe('PokemonReducer', () => {
   let initialState: PokemonState;
@@ -37,5 +41,16 @@ describe('PokemonReducer', () => {
     const state = pokemonReducer(stateWithNumberOfPokemons, action);
 
     expect(state).toEqual(PokemonInitialState);
+  });
+
+  it('LoadPokemonNameSuccessAction should update pokemon name', () => {
+    const action = LoadPokemonNameSuccessAction({pokemonName: 'dracaufeu'});
+
+    const state = pokemonReducer(initialState, action);
+
+    expect(state).toEqual({
+      ...initialState,
+      pokemonName: 'dracaufeu'
+    });
   });
 });

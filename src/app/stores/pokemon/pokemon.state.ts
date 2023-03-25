@@ -2,11 +2,13 @@ import { createSelector } from "@ngrx/store";
 import { AppState } from "../../app.ngrx";
 
 export interface PokemonState {
-  numberOfPokemons: number | undefined
+  numberOfPokemons: number | undefined,
+  pokemonName: string
 }
 
 export const PokemonInitialState: PokemonState = {
-  numberOfPokemons: undefined
+  numberOfPokemons: undefined,
+  pokemonName: ''
 };
 
 const pokemonState = (state: AppState): PokemonState => state.pokemon as PokemonState;
