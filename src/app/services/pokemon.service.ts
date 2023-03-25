@@ -19,8 +19,8 @@ export class PokemonService {
       .pipe(map((result: PokemonSpeciesApiMultipleResult) => result.results.length));
   }
 
-  getPokemonName(id: number): Observable<string | undefined> {
-    return this.http.get<PokemonSpeciesApiSingleResult>(`${environment.apiUrl}/pokemon-species/${id + 1}`)
+  getPokemonName(pokemonIndex: number): Observable<string | undefined> {
+    return this.http.get<PokemonSpeciesApiSingleResult>(`${environment.apiUrl}/pokemon-species/${pokemonIndex + 1}`)
       .pipe(map((result: PokemonSpeciesApiSingleResult) => result.names.find(name => name.language === this.LANGUAGE_FR)?.name));
   }
 
