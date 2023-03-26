@@ -11,28 +11,50 @@ import {
   LoadPokemonSuccessAction
 } from "./pokemon.action";
 import { cold, hot } from "jasmine-marbles";
+import { RandomNumberService } from "../../services/random-number.service";
+import { MockStore, provideMockStore } from "@ngrx/store/testing";
+import { selectNumberOfPokemons } from "./pokemon.state";
 
 describe('PokemonEffects', () => {
   let pokemonServiceSpy: jasmine.SpyObj<PokemonService>;
+  let randomNumberServiceSpy: jasmine.SpyObj<RandomNumberService>;
   let actions$: Observable<any>;
   let effects: PokemonEffects;
+  let mockStore: MockStore;
 
   beforeEach(() => {
     pokemonServiceSpy = jasmine.createSpyObj('PokemonService',
       ['getNumberOfPokemons', 'getPokemonName', 'getPokemonPictureUrl']);
+    randomNumberServiceSpy = jasmine.createSpyObj('RandomNumberService', ['getRandomNumber']);
 
     TestBed.configureTestingModule({
       providers: [
         PokemonEffects,
         provideMockActions(() => actions$),
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectNumberOfPokemons,
+              value: 151
+            }
+          ]
+        }),
         {
           provide: PokemonService,
           useValue: pokemonServiceSpy
+        },
+        {
+          provide: RandomNumberService,
+          useValue: randomNumberServiceSpy
         }
       ]
     });
 
     effects = TestBed.inject(PokemonEffects);
+  });
+
+  afterEach(() => {
+    mockStore?.resetSelectors();
   });
 
   describe('Load number of pokemons', () => {
@@ -59,12 +81,14 @@ describe('PokemonEffects', () => {
   });
 
   describe('Load pokemon', () => {
-    const action = LoadPokemonAction({pokemonId: 1});
+    const action = LoadPokemonAction();
 
-    it('should dispatch success with pokemon', () => {
+    it('should get pokemon with a random id between 1 and pokemonNumber and dispatch success', () => {
       pokemonServiceSpy.getPokemonName.withArgs(1).and.returnValue(
         of('bulbizarre'));
       pokemonServiceSpy.getPokemonPictureUrl.withArgs(1).and.returnValue(of('PICTURE_URL'));
+      randomNumberServiceSpy.getRandomNumber.withArgs(151).and.returnValue(1);
+
       const expectedAction = LoadPokemonSuccessAction({
         pokemon: {
           name: 'bulbizarre',

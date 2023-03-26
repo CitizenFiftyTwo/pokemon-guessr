@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { catchError, forkJoin, map, mergeMap, Observable, of } from "rxjs";
+import { catchError, forkJoin, map, mergeMap, Observable, of, withLatestFrom } from "rxjs";
 import { PokemonService } from "../../services/pokemon.service";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import {
@@ -10,14 +10,18 @@ import {
   LoadPokemonFailureAction,
   LoadPokemonSuccessAction
 } from "./pokemon.action";
-import { Action } from "@ngrx/store";
+import { Action, Store } from "@ngrx/store";
+import { selectNumberOfPokemons } from "./pokemon.state";
+import { RandomNumberService } from "../../services/random-number.service";
 
 @Injectable()
 export class PokemonEffects {
 
   constructor(
     private pokemonService: PokemonService,
-    private actions$: Actions
+    private randomNumberService: RandomNumberService,
+    private actions$: Actions,
+    private store: Store
   ) {
   }
 
@@ -33,20 +37,23 @@ export class PokemonEffects {
 
   loadPokemon$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(LoadPokemonAction),
-    mergeMap((action) =>
-      forkJoin([
-        this.pokemonService.getPokemonName(action.pokemonId),
-        this.pokemonService.getPokemonPictureUrl(action.pokemonId)]).pipe(
-        map(([name, pictureUrl]) => {
-          return LoadPokemonSuccessAction({
-            pokemon: {
-              name,
-              pictureUrl
-            }
-          })
-        }),
-        catchError(() => of(LoadPokemonFailureAction))
-      )
+    withLatestFrom(this.store.select(selectNumberOfPokemons)),
+    mergeMap(([_, numberOfPokemons]) => {
+        const randomPokemonId = this.randomNumberService.getRandomNumber(numberOfPokemons);
+        const pokemonName = this.pokemonService.getPokemonName(randomPokemonId);
+        const pokemonPictureUrl = this.pokemonService.getPokemonPictureUrl(randomPokemonId);
+        return forkJoin([pokemonName, pokemonPictureUrl]).pipe(
+          map(([name, pictureUrl]) => {
+            return LoadPokemonSuccessAction({
+              pokemon: {
+                name,
+                pictureUrl
+              }
+            })
+          }),
+          catchError(() => of(LoadPokemonFailureAction))
+        )
+      }
     )
   ));
 }

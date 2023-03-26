@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
 import { TranslateModule } from "@ngx-translate/core";
 import { LoadNumberOfPokemonsAction } from "./stores/pokemon/pokemon.action";
+import { selectNumberOfPokemons } from "./stores/pokemon";
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -18,7 +19,14 @@ describe('AppComponent', () => {
         RouterTestingModule.withRoutes([])
       ],
       providers: [
-        provideMockStore({}),
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectNumberOfPokemons,
+              value: 151
+            }
+          ]
+        }),
       ]
     }).compileComponents();
 
@@ -27,11 +35,21 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('OnInit should dispatch load number of pokemons ', () => {
-    let dispatchSpyOn = spyOn(mockStore, 'dispatch');
+  describe('OnInit should dispatch load number of pokemons ', () => {
+    it('should dispatch load number of pokemons ', () => {
+      let dispatchSpyOn = spyOn(mockStore, 'dispatch');
 
-    component.ngOnInit();
+      component.ngOnInit();
 
-    expect(dispatchSpyOn).toHaveBeenCalledWith(LoadNumberOfPokemonsAction());
+      expect(dispatchSpyOn).toHaveBeenCalledWith(LoadNumberOfPokemonsAction());
+    });
+
+    it('should select number of pokemons ', () => {
+      component.ngOnInit();
+
+      component.numberOfPokemons$.subscribe(numberOfPokemons => {
+        expect(numberOfPokemons).toEqual(151);
+      });
+    });
   });
 });

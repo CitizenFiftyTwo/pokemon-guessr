@@ -17,8 +17,7 @@ export const LoadNumberOfPokemonsSuccessAction = createAction(PokemonActionTypes
   props<{ numberOfPokemons: number }>());
 export const LoadNumberOfPokemonsFailureAction = createAction(PokemonActionTypes.LOAD_NUMBER_OF_POKEMONS_FAILURE);
 
-export const LoadPokemonAction = createAction(PokemonActionTypes.LOAD_POKEMON,
-  props<{ pokemonId: number }>());
+export const LoadPokemonAction = createAction(PokemonActionTypes.LOAD_POKEMON);
 export const LoadPokemonSuccessAction = createAction(PokemonActionTypes.LOAD_POKEMON_SUCCESS,
   props<{ pokemon: Pokemon }>());
 export const LoadPokemonFailureAction = createAction(PokemonActionTypes.LOAD_POKEMON_FAILURE);
