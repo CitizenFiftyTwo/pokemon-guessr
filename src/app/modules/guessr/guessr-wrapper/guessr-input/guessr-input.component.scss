@@ -18,8 +18,15 @@
     button {
       &:hover {
         cursor: pointer;
+        -webkit-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+        -o-transform: translateY(-10px);
+        transform: translateY(-10px);
       }
 
+      -webkit-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
       background-color: red;
       font-weight: bold;
       border-radius: 0.5rem;
