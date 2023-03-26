@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GuessrWrapperComponent } from './guessr-wrapper.component';
 import { TranslateModule } from "@ngx-translate/core";
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { selectNumberOfPokemons } from "../../../stores/pokemon";
+import { selectNumberOfPokemons, selectPokemonName } from "../../../stores/pokemon";
 import { LoadPokemonNameAction } from "../../../stores/pokemon/pokemon.action";
 import { RandomNumberService } from "../../../services/random-number.service";
 
@@ -26,6 +26,10 @@ describe('GuessrWrapperComponent', () => {
             {
               selector: selectNumberOfPokemons,
               value: 151
+            },
+            {
+              selector: selectPokemonName,
+              value: 'pikachu'
             }
           ]
         }),
@@ -42,6 +46,10 @@ describe('GuessrWrapperComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    mockStore?.resetSelectors();
+  });
+
   describe('OnInit', () => {
     it('should dispatch LoadPokemonNameAction with a random id between 1 and pokemonNumber', () => {
       randomNumberServiceSpy.getRandomNumber.withArgs(151).and.returnValue(100);
@@ -50,6 +58,14 @@ describe('GuessrWrapperComponent', () => {
       component.ngOnInit();
 
       expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonNameAction({pokemonId: 100}));
+    });
+
+    it('should select pokemon name', () => {
+      component.ngOnInit();
+
+      component.pokemonName$.subscribe(name => {
+        expect(name).toEqual('pikachu');
+      });
     });
   })
 });
