@@ -69,6 +69,26 @@ describe('GuessrInputComponent', () => {
       expect(emitAnswerIsCorrectSpy).toHaveBeenCalled()
     });
 
+    it('should emit answerIsCorrect when pokemon name has accent', () => {
+      let emitAnswerIsCorrectSpy = spyOn(component.answerIsCorrect, 'emit');
+      component.pokemonName = 'câblifère'
+      component.pokemonInputName = 'cablifere'
+
+      component.submit()
+
+      expect(emitAnswerIsCorrectSpy).toHaveBeenCalled()
+    });
+
+    it('should emit answerIsCorrect when pokemon input name has accent', () => {
+      let emitAnswerIsCorrectSpy = spyOn(component.answerIsCorrect, 'emit');
+      component.pokemonName = 'cablifere'
+      component.pokemonInputName = 'câblifère'
+
+      component.submit()
+
+      expect(emitAnswerIsCorrectSpy).toHaveBeenCalled()
+    });
+
     it('should emit answerIsIncorrect when answer is incorrect', () => {
       let emitAnswerIsIncorrectSpy = spyOn(component.answerIsIncorrect, 'emit');
       component.pokemonName = 'pikachu'

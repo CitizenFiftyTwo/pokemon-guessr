@@ -36,8 +36,11 @@ export class GuessrInputComponent implements OnChanges {
     this.nextPokemonRequested.emit()
   }
 
-
   private isCorrectAnswer(): boolean {
-    return this.pokemonName.toLowerCase() === this.pokemonInputName.toLowerCase()
+    return this.normalize(this.pokemonName) === this.normalize(this.pokemonInputName)
+  }
+
+  private normalize(name: string) {
+    return name.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
   }
 }
