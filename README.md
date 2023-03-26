@@ -2,6 +2,8 @@
 
 A small game project with PokeApi : https://pokeapi.co/
 
+Demo [here](https://pokemon-guessr.netlify.app/)
+
 ## TODO list
 
 - use unidecode or similar to accept some special characters
@@ -10,6 +12,7 @@ A small game project with PokeApi : https://pokeapi.co/
   - Filter By region
   - Apply grayscale filter on images
 - More scoring
+- Random pokemon selector won't select twice the same pokemon
 
 ## Development server
 
