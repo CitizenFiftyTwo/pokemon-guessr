@@ -11,7 +11,7 @@ const onLoadNumberOfPokemonsSuccess = (state: PokemonState, {numberOfPokemons}: 
   numberOfPokemons
 });
 
-const onLoadNumberOfPokemonsFailure = (state: PokemonState) => ({...state, numberOfPokemons: undefined});
+const onLoadNumberOfPokemonsFailure = (state: PokemonState) => ({...state, numberOfPokemons: 0});
 
 const onLoadPokemonNameSuccess = (state: PokemonState, {pokemonName}: { pokemonName: string }) => ({
   ...state,
