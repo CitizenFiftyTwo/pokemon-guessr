@@ -58,7 +58,7 @@ describe('PokemonEffects', () => {
   });
 
   describe('Load pokemon name', () => {
-    const action = LoadPokemonNameAction({pokemonIndex: 0});
+    const action = LoadPokemonNameAction({pokemonId: 0});
 
     it('should dispatch success with pokemon name', () => {
       pokemonServiceSpy.getPokemonName.and.returnValue(cold('-b', {b: 'bulbizarre'}));

@@ -54,7 +54,7 @@ describe('PokemonService', () => {
         ]
       }
 
-      service.getPokemonName(0).subscribe(result => {
+      service.getPokemonName(1).subscribe(result => {
         expect(result).toEqual('bulbizarre');
       });
 
@@ -75,7 +75,7 @@ describe('PokemonService', () => {
         ]
       }
 
-      service.getPokemonName(0).subscribe({
+      service.getPokemonName(1).subscribe({
         next: () => {
           fail('Expected an error to be thrown');
         },

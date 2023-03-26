@@ -24,7 +24,7 @@ export class GuessrWrapperComponent implements OnInit {
       filter(numberOfPokemon => numberOfPokemon > 0),
       take(1),
       map(numberOfPokemon =>
-        LoadPokemonNameAction({pokemonIndex: this.randomNumberService.getRandomNumber(numberOfPokemon)}))
+        LoadPokemonNameAction({pokemonId: this.randomNumberService.getRandomNumber(numberOfPokemon)}))
     ).subscribe(action => this.store.dispatch(action));
   }
 

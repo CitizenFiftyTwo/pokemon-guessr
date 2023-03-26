@@ -16,7 +16,7 @@ describe('RandomNumberService', () => {
     const randomNumber = service.getRandomNumber(n);
 
     expect(randomNumber).toBeGreaterThanOrEqual(1);
-    expect(randomNumber).toBeLessThan(n);
+    expect(randomNumber).toBeLessThan(n + 1);
   });
 
   it('should return 1 when n is 1', () => {

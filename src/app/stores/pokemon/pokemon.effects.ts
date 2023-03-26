@@ -32,7 +32,7 @@ export class PokemonEffects {
 
   loadPokemonName$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(LoadPokemonNameAction),
-    mergeMap((action) => this.pokemonService.getPokemonName(action.pokemonIndex)
+    mergeMap((action) => this.pokemonService.getPokemonName(action.pokemonId)
       .pipe(
         map(pokemonName => LoadPokemonNameSuccessAction({pokemonName: pokemonName})),
         catchError(() => of(LoadNumberOfPokemonsFailureAction()))

@@ -49,7 +49,7 @@ describe('GuessrWrapperComponent', () => {
 
       component.ngOnInit();
 
-      expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonNameAction({pokemonIndex: 100}));
+      expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonNameAction({pokemonId: 100}));
     });
   })
 });
