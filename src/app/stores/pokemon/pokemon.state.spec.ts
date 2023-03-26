@@ -1,5 +1,5 @@
 import { AppState } from "../../app.ngrx";
-import { PokemonState, selectNumberOfPokemons, selectPokemonName } from "./pokemon.state";
+import { PokemonState, selectNumberOfPokemons, selectPokemon } from "./pokemon.state";
 
 describe('PokemonState', () => {
   let appState: AppState;
@@ -8,7 +8,12 @@ describe('PokemonState', () => {
   beforeEach(() => {
     initialState = {
       numberOfPokemons: 151,
-      pokemonName: 'tortank'
+      pokemonName: 'tortank',
+      pokemonPictureUrl: 'PICTURE_URL',
+      pokemon: {
+        name: 'tortank',
+        pictureUrl: 'PICTURE_URL',
+      }
     };
 
     appState = {
@@ -22,9 +27,12 @@ describe('PokemonState', () => {
     expect(numberOfPokemons).toEqual(151);
   });
 
-  it('should select pokemon name', () => {
-    const pokemonName = selectPokemonName(appState);
+  it('should select pokemon', () => {
+    const pokemon = selectPokemon(appState);
 
-    expect(pokemonName).toEqual('tortank');
+    expect(pokemon).toEqual({
+      name: 'tortank',
+      pictureUrl: 'PICTURE_URL',
+    });
   });
 });

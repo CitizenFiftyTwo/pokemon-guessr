@@ -22,11 +22,23 @@ export class PokemonService {
   getPokemonName(pokemonId: number): Observable<string> {
     return this.http.get<PokemonSpeciesApiSingleResult>(`${environment.apiUrl}/pokemon-species/${pokemonId}`)
       .pipe(map((result: PokemonSpeciesApiSingleResult) => {
-        const pokemonName = result.names.find(name => name.language.name === this.LANGUAGE_FR)
+        const pokemonName = result.names.find(name => name.language.name === this.LANGUAGE_FR);
         if (!pokemonName) {
-          throw new Error(`Pokemon has no name for language ${this.LANGUAGE_FR}`)
+          throw new Error(`Pokemon ${pokemonId} has no name for language ${this.LANGUAGE_FR}`)
         } else {
           return pokemonName.name
+        }
+      }));
+  }
+
+  getPokemonPictureUrl(pokemonId: number): Observable<string> {
+    return this.http.get<PokemonApiResult>(`${environment.apiUrl}/pokemon/${pokemonId}`)
+      .pipe(map((result: PokemonApiResult) => {
+        const pokemonPictureUrl = result.sprites.other['official-artwork'].front_default;
+        if (!pokemonPictureUrl) {
+          throw new Error(`Pokemon ${pokemonId} has no picture`)
+        } else {
+          return pokemonPictureUrl
         }
       }));
   }
@@ -47,4 +59,20 @@ interface PokemonName {
 
 interface Language {
   name: string
+}
+
+interface PokemonApiResult {
+  sprites: PokemonSprite
+}
+
+interface PokemonSprite {
+  other: PokemonOtherSprite
+}
+
+interface PokemonOtherSprite {
+  'official-artwork': PokemonOfficialArtwork
+}
+
+interface PokemonOfficialArtwork {
+  front_default: string
 }

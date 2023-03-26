@@ -1,14 +1,14 @@
 import { PokemonService } from "../../services/pokemon.service";
 import { TestBed } from "@angular/core/testing";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { provideMockActions } from "@ngrx/effects/testing";
 import { PokemonEffects } from "./pokemon.effects";
 import {
   LoadNumberOfPokemonsAction,
   LoadNumberOfPokemonsFailureAction,
   LoadNumberOfPokemonsSuccessAction,
-  LoadPokemonNameAction,
-  LoadPokemonNameSuccessAction
+  LoadPokemonAction,
+  LoadPokemonSuccessAction
 } from "./pokemon.action";
 import { cold, hot } from "jasmine-marbles";
 
@@ -18,7 +18,8 @@ describe('PokemonEffects', () => {
   let effects: PokemonEffects;
 
   beforeEach(() => {
-    pokemonServiceSpy = jasmine.createSpyObj('PokemonService', ['getNumberOfPokemons', 'getPokemonName']);
+    pokemonServiceSpy = jasmine.createSpyObj('PokemonService',
+      ['getNumberOfPokemons', 'getPokemonName', 'getPokemonPictureUrl']);
 
     TestBed.configureTestingModule({
       providers: [
@@ -57,17 +58,25 @@ describe('PokemonEffects', () => {
     });
   });
 
-  describe('Load pokemon name', () => {
-    const action = LoadPokemonNameAction({pokemonId: 0});
+  describe('Load pokemon', () => {
+    const action = LoadPokemonAction({pokemonId: 1});
 
-    it('should dispatch success with pokemon name', () => {
-      pokemonServiceSpy.getPokemonName.and.returnValue(cold('-b', {b: 'bulbizarre'}));
-      const expectedAction = LoadPokemonNameSuccessAction({pokemonName: 'bulbizarre'});
+    it('should dispatch success with pokemon', () => {
+      pokemonServiceSpy.getPokemonName.withArgs(1).and.returnValue(
+        of('bulbizarre'));
+      pokemonServiceSpy.getPokemonPictureUrl.withArgs(1).and.returnValue(of('PICTURE_URL'));
+      const expectedAction = LoadPokemonSuccessAction({
+        pokemon: {
+          name: 'bulbizarre',
+          pictureUrl: 'PICTURE_URL'
+        }
+      });
 
       actions$ = hot('a', {a: action});
 
-      expect(effects.loadPokemonName$).toBeObservable(cold('-c', {c: expectedAction}));
-      expect(pokemonServiceSpy.getPokemonName).toHaveBeenCalledWith(0);
+      expect(effects.loadPokemon$).toBeObservable(cold('b', {b: expectedAction}));
+      expect(pokemonServiceSpy.getPokemonName).toHaveBeenCalledWith(1);
+      expect(pokemonServiceSpy.getPokemonPictureUrl).toHaveBeenCalledWith(1);
     });
   });
 

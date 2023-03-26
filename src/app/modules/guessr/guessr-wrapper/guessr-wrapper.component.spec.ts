@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GuessrWrapperComponent } from './guessr-wrapper.component';
 import { TranslateModule } from "@ngx-translate/core";
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { selectNumberOfPokemons, selectPokemonName } from "../../../stores/pokemon";
-import { LoadPokemonNameAction } from "../../../stores/pokemon/pokemon.action";
+import { selectNumberOfPokemons, selectPokemon } from "../../../stores/pokemon";
+import { LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
 import { RandomNumberService } from "../../../services/random-number.service";
 
 describe('GuessrWrapperComponent', () => {
@@ -28,9 +28,12 @@ describe('GuessrWrapperComponent', () => {
               value: 151
             },
             {
-              selector: selectPokemonName,
-              value: 'pikachu'
-            }
+              selector: selectPokemon,
+              value: {
+                name: 'pikachu',
+                pictureUrl: 'PICTURE_URL'
+              }
+            },
           ]
         }),
         {
@@ -51,20 +54,23 @@ describe('GuessrWrapperComponent', () => {
   });
 
   describe('OnInit', () => {
-    it('should dispatch LoadPokemonNameAction with a random id between 1 and pokemonNumber', () => {
+    it('should dispatch LoadPokemonAction  with a random id between 1 and pokemonNumber', () => {
       randomNumberServiceSpy.getRandomNumber.withArgs(151).and.returnValue(100);
       let dispatchSpyOn = spyOn(mockStore, 'dispatch');
 
       component.ngOnInit();
 
-      expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonNameAction({pokemonId: 100}));
+      expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonAction({pokemonId: 100}));
     });
 
-    it('should select pokemon name', () => {
+    it('should select pokemon', () => {
       component.ngOnInit();
 
-      component.pokemonName$.subscribe(name => {
-        expect(name).toEqual('pikachu');
+      component.pokemon$.subscribe(pokemon => {
+        expect(pokemon).toEqual({
+          name: 'pikachu',
+          pictureUrl: 'PICTURE_URL'
+        });
       });
     });
   })

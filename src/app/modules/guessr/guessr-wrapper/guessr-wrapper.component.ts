@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from "@ngrx/store";
 import { filter, map, Observable, of, take } from "rxjs";
-import { LoadPokemonNameAction } from "../../../stores/pokemon/pokemon.action";
-import { selectNumberOfPokemons, selectPokemonName } from "../../../stores/pokemon";
+import { LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
+import { selectNumberOfPokemons, selectPokemon } from "../../../stores/pokemon";
 import { RandomNumberService } from "../../../services/random-number.service";
 
 @Component({
@@ -13,20 +13,20 @@ import { RandomNumberService } from "../../../services/random-number.service";
 export class GuessrWrapperComponent implements OnInit {
 
   numberOfPokemons$: Observable<number> = of(0)
-  pokemonName$: Observable<string> = of('')
+  pokemon$: Observable<Pokemon | undefined> = of(undefined)
 
   constructor(private store: Store,
               private randomNumberService: RandomNumberService) {
   }
 
   ngOnInit(): void {
-    this.pokemonName$ = this.store.select(selectPokemonName);
+    this.pokemon$ = this.store.select(selectPokemon);
     this.numberOfPokemons$ = this.store.select(selectNumberOfPokemons);
     this.numberOfPokemons$.pipe(
       filter(numberOfPokemon => numberOfPokemon > 0),
       take(1),
       map(numberOfPokemon =>
-        LoadPokemonNameAction({pokemonId: this.randomNumberService.getRandomNumber(numberOfPokemon)}))
+        LoadPokemonAction({pokemonId: this.randomNumberService.getRandomNumber(numberOfPokemon)})),
     ).subscribe(action => this.store.dispatch(action));
   }
 

@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
-import { catchError, map, mergeMap, Observable, of } from "rxjs";
+import { catchError, forkJoin, map, mergeMap, Observable, of } from "rxjs";
 import { PokemonService } from "../../services/pokemon.service";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import {
   LoadNumberOfPokemonsAction,
   LoadNumberOfPokemonsFailureAction,
   LoadNumberOfPokemonsSuccessAction,
-  LoadPokemonNameAction,
-  LoadPokemonNameSuccessAction
+  LoadPokemonAction,
+  LoadPokemonFailureAction,
+  LoadPokemonSuccessAction
 } from "./pokemon.action";
 import { Action } from "@ngrx/store";
 
@@ -30,12 +31,21 @@ export class PokemonEffects {
     )
   ));
 
-  loadPokemonName$: Observable<Action> = createEffect(() => this.actions$.pipe(
-    ofType(LoadPokemonNameAction),
-    mergeMap((action) => this.pokemonService.getPokemonName(action.pokemonId)
-      .pipe(
-        map(pokemonName => LoadPokemonNameSuccessAction({pokemonName: pokemonName})),
-        catchError(() => of(LoadNumberOfPokemonsFailureAction()))
+  loadPokemon$: Observable<Action> = createEffect(() => this.actions$.pipe(
+    ofType(LoadPokemonAction),
+    mergeMap((action) =>
+      forkJoin([
+        this.pokemonService.getPokemonName(action.pokemonId),
+        this.pokemonService.getPokemonPictureUrl(action.pokemonId)]).pipe(
+        map(([name, pictureUrl]) => {
+          return LoadPokemonSuccessAction({
+            pokemon: {
+              name,
+              pictureUrl
+            }
+          })
+        }),
+        catchError(() => of(LoadPokemonFailureAction))
       )
     )
   ));

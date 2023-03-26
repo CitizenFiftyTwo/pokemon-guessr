@@ -87,7 +87,7 @@ describe('PokemonService', () => {
         },
         error: (err) => {
           expect(err).toBeInstanceOf(Error);
-          expect(err.message).toEqual(`Pokemon has no name for language fr`);
+          expect(err.message).toEqual(`Pokemon 1 has no name for language fr`);
         },
       });
 
@@ -97,5 +97,58 @@ describe('PokemonService', () => {
       expect(req.request.method).toEqual('GET');
       req.flush(apiResult);
     }));
+  })
+
+  describe('getPokemonPictureUrl', () => {
+    it('should get pokemon picture url', waitForAsync(() => {
+      const apiResult = {
+        'sprites': {
+          'other': {
+            'official-artwork': {
+              'front_default': 'PICTURE_URL'
+            }
+          }
+        }
+      }
+
+      service.getPokemonPictureUrl(1).subscribe(result => {
+        expect(result).toEqual('PICTURE_URL');
+      });
+
+      const req = httpMock.expectOne((request: HttpRequest<any>) =>
+        request.urlWithParams === `${environment.apiUrl}/pokemon/1`
+      );
+      expect(req.request.method).toEqual('GET');
+      req.flush(apiResult);
+    }));
+
+    it('should throw an error when pokemon has picture url', waitForAsync(() => {
+      const apiResult = {
+        'sprites': {
+          'other': {
+            'official-artwork': {
+              'front_default': null
+            }
+          }
+        }
+      }
+
+      service.getPokemonPictureUrl(1).subscribe({
+        next: () => {
+          fail('Expected an error to be thrown');
+        },
+        error: (err) => {
+          expect(err).toBeInstanceOf(Error);
+          expect(err.message).toEqual(`Pokemon 1 has no picture`);
+        },
+      });
+
+      const req = httpMock.expectOne((request: HttpRequest<any>) =>
+        request.urlWithParams === `${environment.apiUrl}/pokemon/1`
+      );
+      expect(req.request.method).toEqual('GET');
+      req.flush(apiResult);
+    }));
+
   })
 });

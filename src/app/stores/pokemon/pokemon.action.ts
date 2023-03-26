@@ -4,9 +4,9 @@ export const PokemonActionTypes = {
   LOAD_NUMBER_OF_POKEMONS: '[Pokemon] Load number of Pokemons',
   LOAD_NUMBER_OF_POKEMONS_SUCCESS: '[Pokemon] Load number of Pokemons success',
   LOAD_NUMBER_OF_POKEMONS_FAILURE: '[Pokemon] Load number of Pokemons failure',
-  LOAD_POKEMON_NAME: '[Pokemon] Load pokemon name',
-  LOAD_POKEMON_NAME_SUCCESS: '[Pokemon] Load pokemon name success',
-  LOAD_POKEMON_NAME_FAILURE: '[Pokemon] Load pokemon name failure'
+  LOAD_POKEMON: '[Pokemon] Load pokemon',
+  LOAD_POKEMON_SUCCESS: '[Pokemon] Load pokemon success',
+  LOAD_POKEMON_FAILURE: '[Pokemon] Load pokemon failure'
 };
 
 
@@ -15,8 +15,8 @@ export const LoadNumberOfPokemonsSuccessAction = createAction(PokemonActionTypes
   props<{ numberOfPokemons: number }>());
 export const LoadNumberOfPokemonsFailureAction = createAction(PokemonActionTypes.LOAD_NUMBER_OF_POKEMONS_FAILURE);
 
-export const LoadPokemonNameAction = createAction(PokemonActionTypes.LOAD_POKEMON_NAME,
+export const LoadPokemonAction = createAction(PokemonActionTypes.LOAD_POKEMON,
   props<{ pokemonId: number }>());
-export const LoadPokemonNameSuccessAction = createAction(PokemonActionTypes.LOAD_POKEMON_NAME_SUCCESS,
-  props<{ pokemonName: string }>());
-export const LoadPokemonNameFailureAction = createAction(PokemonActionTypes.LOAD_POKEMON_NAME_FAILURE);
+export const LoadPokemonSuccessAction = createAction(PokemonActionTypes.LOAD_POKEMON_SUCCESS,
+  props<{ pokemon: Pokemon }>());
+export const LoadPokemonFailureAction = createAction(PokemonActionTypes.LOAD_POKEMON_FAILURE);
