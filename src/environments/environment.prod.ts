@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://mon-api.com'
+  apiUrl: 'https://pokeapi.co/api/v2'
 };
