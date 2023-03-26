@@ -5,13 +5,18 @@ import { TranslateModule } from "@ngx-translate/core";
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
 import { selectNumberOfPokemons } from "../../../stores/pokemon";
 import { LoadPokemonNameAction } from "../../../stores/pokemon/pokemon.action";
+import { RandomNumberService } from "../../../services/random-number.service";
 
 describe('GuessrWrapperComponent', () => {
   let component: GuessrWrapperComponent;
   let fixture: ComponentFixture<GuessrWrapperComponent>;
   let mockStore: MockStore;
+  let randomNumberServiceSpy: jasmine.SpyObj<RandomNumberService>;
+
 
   beforeEach(async () => {
+    randomNumberServiceSpy = jasmine.createSpyObj('RandomNumberService', ['getRandomNumber']);
+
     await TestBed.configureTestingModule({
       declarations: [GuessrWrapperComponent],
       imports: [TranslateModule.forRoot()],
@@ -24,6 +29,10 @@ describe('GuessrWrapperComponent', () => {
             }
           ]
         }),
+        {
+          provide: RandomNumberService,
+          useValue: randomNumberServiceSpy
+        }
       ]
     }).compileComponents();
 
@@ -34,12 +43,13 @@ describe('GuessrWrapperComponent', () => {
   });
 
   describe('OnInit', () => {
-    it('should dispatch LoadPokemonNameAction', () => {
+    it('should dispatch LoadPokemonNameAction with a random id between 1 and pokemonNumber', () => {
+      randomNumberServiceSpy.getRandomNumber.withArgs(151).and.returnValue(100);
       let dispatchSpyOn = spyOn(mockStore, 'dispatch');
 
       component.ngOnInit();
 
-      expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonNameAction({pokemonIndex: 150}));
+      expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonNameAction({pokemonIndex: 100}));
     });
   })
 });
