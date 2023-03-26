@@ -4,6 +4,7 @@ A small game project with PokeApi : https://pokeapi.co/
 
 ## TODO list
 
+- use unidecode or similar to accept some special characters
 - i18n
 - Game settings :
   - Filter By region
