@@ -9,6 +9,6 @@ export class RandomNumberService {
     if (n < 0) {
       return NaN;
     }
-    return Math.floor(Math.random() * n);
+    return Math.floor(Math.random() * n) + 1;
   }
 }
