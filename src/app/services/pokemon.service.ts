@@ -22,7 +22,7 @@ export class PokemonService {
   getPokemonName(pokemonId: number): Observable<string> {
     return this.http.get<PokemonSpeciesApiSingleResult>(`${environment.apiUrl}/pokemon-species/${pokemonId}`)
       .pipe(map((result: PokemonSpeciesApiSingleResult) => {
-        const pokemonName = result.names.find(name => name.language === this.LANGUAGE_FR)
+        const pokemonName = result.names.find(name => name.language.name === this.LANGUAGE_FR)
         if (!pokemonName) {
           throw new Error(`Pokemon has no name for language ${this.LANGUAGE_FR}`)
         } else {
@@ -41,6 +41,10 @@ interface PokemonSpeciesApiSingleResult {
 }
 
 interface PokemonName {
-  language: string
+  language: Language
+  name: string
+}
+
+interface Language {
   name: string
 }

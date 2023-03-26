@@ -44,11 +44,15 @@ describe('PokemonService', () => {
       const apiResult = {
         names: [
           {
-            language: 'en',
+            language: {
+              name: 'en'
+            },
             name: 'bulbasaur'
           },
           {
-            language: 'fr',
+            language: {
+              name: 'fr'
+            },
             name: 'bulbizarre'
           }
         ]
@@ -69,7 +73,9 @@ describe('PokemonService', () => {
       const apiResult = {
         names: [
           {
-            language: 'en',
+            language: {
+              name: 'en'
+            },
             name: 'bulbasaur'
           }
         ]
