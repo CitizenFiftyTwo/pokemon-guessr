@@ -1,3 +1,5 @@
+@use "src/styles/colors";
+
 :host {
   .header {
     height: 10vh;
@@ -6,8 +8,9 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    background-color: red;
-    border-bottom: black solid 3px;
+    background-color: colors.$color-red;
+    border-bottom: colors.$color-black solid 3px;
+    color: colors.$color-white;
   }
 }
 

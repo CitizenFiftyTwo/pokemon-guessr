@@ -1,3 +1,5 @@
+@use "src/styles/colors";
+
 :host {
   width: 100%;
 
@@ -17,6 +19,8 @@
 
     button {
       &:hover {
+        opacity: 0.8;
+        color: colors.$color-white;
         cursor: pointer;
         -webkit-transform: translateY(-10px);
         -ms-transform: translateY(-10px);
@@ -27,10 +31,11 @@
       -webkit-transition: all 0.3s ease-in-out;
       -o-transition: all 0.3s ease-in-out;
       transition: all 0.3s ease-in-out;
-      background-color: red;
       font-weight: bold;
       border-radius: 0.5rem;
-      border: 3px solid black;
+      border: 3px solid colors.$color-black;
+      color: colors.$color-white;
+      background-color: colors.$color-electric-blue;
       font-size: 1.5rem;;
       width: 50%;
       padding: 1.5rem;
