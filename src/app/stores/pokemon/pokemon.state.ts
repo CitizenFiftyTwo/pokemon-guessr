@@ -3,16 +3,17 @@ import { AppState } from "../../app.ngrx";
 
 export interface PokemonState {
   numberOfPokemons: number,
-  pokemonName: string,
-  pokemonPictureUrl: string,
-  pokemon: Pokemon | undefined
+  pokemon: Pokemon | undefined,
+  numberOfCorrectAnswers: number,
+  numberOfQuestionsAsked: number
+
 }
 
 export const PokemonInitialState: PokemonState = {
   numberOfPokemons: 0,
-  pokemonName: '',
-  pokemonPictureUrl: '',
-  pokemon: undefined
+  pokemon: undefined,
+  numberOfCorrectAnswers: 0,
+  numberOfQuestionsAsked: 0
 };
 
 const pokemonState = (state: AppState): PokemonState => state.pokemon as PokemonState;
@@ -22,3 +23,9 @@ export const selectNumberOfPokemons = createSelector(pokemonState, (state: Pokem
 
 export const selectPokemon = createSelector(pokemonState, (state: PokemonState) =>
   state.pokemon);
+
+export const selectNumberOfCorrectAnswers = createSelector(pokemonState, (state: PokemonState) =>
+  state.numberOfCorrectAnswers);
+
+export const selectNumberOfQuestionsAsked = createSelector(pokemonState, (state: PokemonState) =>
+  state.numberOfQuestionsAsked);

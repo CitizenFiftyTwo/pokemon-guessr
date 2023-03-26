@@ -1,6 +1,12 @@
 <ng-container *ngIf="pokemon$ | async as pokemon">
   <p>{{ 'POKEMON_GUESSR.QUESTION' | translate }}</p>
   <img src="{{pokemon.pictureUrl}}" alt="Pokemon picture">
-  <app-guessr-input [pokemonName]="pokemon.name"></app-guessr-input>
+  <app-guessr-input [pokemonName]="pokemon.name"
+                    (answerIsCorrect)="handleCorrectAnswer()"
+                    (answerIsIncorrect)="handleIncorrectAnswer()"
+  ></app-guessr-input>
+  <div *ngIf="(numberOfQuestionsAked$ | async) || 0 > 0">
+    {{ 'POKEMON_GUESSR.SCORE' | translate}} : {{ numberOfCorrectAnswers$ | async}}
+    / {{ numberOfQuestionsAked$ | async }}</div>
 </ng-container>
 

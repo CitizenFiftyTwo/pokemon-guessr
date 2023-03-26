@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 
 @Component({
   selector: 'app-guessr-input',
   templateUrl: './guessr-input.component.html',
   styleUrls: ['./guessr-input.component.scss']
 })
-export class GuessrInputComponent {
+export class GuessrInputComponent implements OnChanges {
 
   @Input()
   pokemonName: string = ''
@@ -17,8 +17,14 @@ export class GuessrInputComponent {
   answerIsIncorrect = new EventEmitter<void>();
 
   pokemonInputName: string = ''
+  isAnswerSubmitted = false
+
+  ngOnChanges(): void {
+    this.isAnswerSubmitted = false;
+  }
 
   submit() {
+    this.isAnswerSubmitted = true;
     this.isCorrectAnswer() ? this.answerIsCorrect.emit() : this.answerIsIncorrect.emit()
   }
 

@@ -2,6 +2,8 @@ import { PokemonInitialState, PokemonState } from "./pokemon.state";
 import { pokemonReducer } from "./pokemon.reducer";
 import { INIT } from "@ngrx/store";
 import {
+  CorrectAnswerAction,
+  IncorrectAnswerAction,
   LoadNumberOfPokemonsFailureAction,
   LoadNumberOfPokemonsSuccessAction,
   LoadPokemonSuccessAction
@@ -58,4 +60,26 @@ describe('PokemonReducer', () => {
     });
   });
 
+  it('CorrectAnswerAction should increment numberOfCorrectAnswers and numberOfQuestionsAsked', () => {
+    const action = CorrectAnswerAction();
+
+    const state = pokemonReducer(initialState, action);
+
+    expect(state).toEqual({
+      ...initialState,
+      numberOfCorrectAnswers: 1,
+      numberOfQuestionsAsked: 1
+    });
+  })
+
+  it('IncorrectAnswerAction should increment numberOfQuestionsAsked', () => {
+    const action = IncorrectAnswerAction();
+
+    const state = pokemonReducer(initialState, action);
+
+    expect(state).toEqual({
+      ...initialState,
+      numberOfQuestionsAsked: 1,
+    });
+  });
 });

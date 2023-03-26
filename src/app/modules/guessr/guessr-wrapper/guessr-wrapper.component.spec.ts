@@ -3,8 +3,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GuessrWrapperComponent } from './guessr-wrapper.component';
 import { TranslateModule } from "@ngx-translate/core";
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { selectNumberOfPokemons, selectPokemon } from "../../../stores/pokemon";
-import { LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
+import {
+  selectNumberOfCorrectAnswers,
+  selectNumberOfPokemons,
+  selectNumberOfQuestionsAsked,
+  selectPokemon
+} from "../../../stores/pokemon";
+import { CorrectAnswerAction, IncorrectAnswerAction, LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
 import { RandomNumberService } from "../../../services/random-number.service";
 import { GuessrModule } from "../guessr.module";
 
@@ -38,6 +43,14 @@ describe('GuessrWrapperComponent', () => {
                 pictureUrl: 'PICTURE_URL'
               }
             },
+            {
+              selector: selectNumberOfCorrectAnswers,
+              value: 10
+            },
+            {
+              selector: selectNumberOfQuestionsAsked,
+              value: 20
+            }
           ]
         }),
         {
@@ -77,5 +90,42 @@ describe('GuessrWrapperComponent', () => {
         });
       });
     });
+
+    it('should select number of correct answers', () => {
+      component.ngOnInit();
+
+      component.numberOfCorrectAnswers$.subscribe(numberOfCorrectAnswers => {
+        expect(numberOfCorrectAnswers).toEqual(10);
+      });
+    });
+
+    it('should select number of quesstions asked', () => {
+      component.ngOnInit();
+
+      component.numberOfQuestionsAked$.subscribe(numberOfQuestionsAked => {
+        expect(numberOfQuestionsAked).toEqual(20);
+      });
+    });
   })
+
+  describe('handleCorrectAnswer', () => {
+    it('should dispatch CorrectAnswerAction', () => {
+      let dispatchSpyOn = spyOn(mockStore, 'dispatch');
+
+      component.handleCorrectAnswer();
+
+      expect(dispatchSpyOn).toHaveBeenCalledWith(CorrectAnswerAction());
+    });
+  })
+
+  describe('handleIncorrectAnswer', () => {
+    it('should dispatch CorrectAnswerAction', () => {
+      let dispatchSpyOn = spyOn(mockStore, 'dispatch');
+
+      component.handleIncorrectAnswer();
+
+      expect(dispatchSpyOn).toHaveBeenCalledWith(IncorrectAnswerAction());
+    });
+  })
+
 });

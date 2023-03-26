@@ -6,7 +6,9 @@ export const PokemonActionTypes = {
   LOAD_NUMBER_OF_POKEMONS_FAILURE: '[Pokemon] Load number of Pokemons failure',
   LOAD_POKEMON: '[Pokemon] Load pokemon',
   LOAD_POKEMON_SUCCESS: '[Pokemon] Load pokemon success',
-  LOAD_POKEMON_FAILURE: '[Pokemon] Load pokemon failure'
+  LOAD_POKEMON_FAILURE: '[Pokemon] Load pokemon failure',
+  CORRECT_ANSWER: '[Pokemon] A correct answer',
+  INCORRECT_ANSWER: '[Pokemon] An incorrect answer',
 };
 
 
@@ -20,3 +22,6 @@ export const LoadPokemonAction = createAction(PokemonActionTypes.LOAD_POKEMON,
 export const LoadPokemonSuccessAction = createAction(PokemonActionTypes.LOAD_POKEMON_SUCCESS,
   props<{ pokemon: Pokemon }>());
 export const LoadPokemonFailureAction = createAction(PokemonActionTypes.LOAD_POKEMON_FAILURE);
+
+export const CorrectAnswerAction = createAction(PokemonActionTypes.CORRECT_ANSWER);
+export const IncorrectAnswerAction = createAction(PokemonActionTypes.INCORRECT_ANSWER);

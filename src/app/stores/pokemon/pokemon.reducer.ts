@@ -1,6 +1,8 @@
 import { PokemonInitialState, PokemonState } from "./pokemon.state";
 import { createReducer, on } from "@ngrx/store";
 import {
+  CorrectAnswerAction,
+  IncorrectAnswerAction,
   LoadNumberOfPokemonsFailureAction,
   LoadNumberOfPokemonsSuccessAction,
   LoadPokemonSuccessAction
@@ -18,10 +20,25 @@ const onLoadPokemonSuccess = (state: PokemonState, {pokemon}: { pokemon: Pokemon
   pokemon
 });
 
+const onCorrectAnswer = (state: PokemonState) => (
+  {
+    ...state,
+    numberOfCorrectAnswers: state.numberOfCorrectAnswers + 1,
+    numberOfQuestionsAsked: state.numberOfQuestionsAsked + 1
+  });
+
+const onIncorrectAnswer = (state: PokemonState) => (
+  {
+    ...state,
+    numberOfQuestionsAsked: state.numberOfQuestionsAsked + 1
+  });
+
 
 export const pokemonReducer = createReducer(
   PokemonInitialState,
   on(LoadNumberOfPokemonsSuccessAction, onLoadNumberOfPokemonsSuccess),
   on(LoadNumberOfPokemonsFailureAction, onLoadNumberOfPokemonsFailure),
   on(LoadPokemonSuccessAction, onLoadPokemonSuccess),
+  on(CorrectAnswerAction, onCorrectAnswer),
+  on(IncorrectAnswerAction, onIncorrectAnswer)
 );
