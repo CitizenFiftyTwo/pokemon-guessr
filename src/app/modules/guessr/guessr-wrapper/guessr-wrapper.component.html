@@ -10,4 +10,6 @@
     {{ 'POKEMON_GUESSR.SCORE' | translate}} : {{ numberOfCorrectAnswers$ | async}}
     / {{ numberOfQuestionsAked$ | async }}</div>
 </ng-container>
-
+<ng-container *ngIf="!(pokemon$ | async)">
+  <app-loader></app-loader>
+</ng-container>

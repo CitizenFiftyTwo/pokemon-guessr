@@ -6,6 +6,7 @@ import {
   IncorrectAnswerAction,
   LoadNumberOfPokemonsFailureAction,
   LoadNumberOfPokemonsSuccessAction,
+  LoadPokemonAction,
   LoadPokemonSuccessAction
 } from "./pokemon.action";
 
@@ -43,6 +44,20 @@ describe('PokemonReducer', () => {
     const state = pokemonReducer(stateWithNumberOfPokemons, action);
 
     expect(state).toEqual(PokemonInitialState);
+  });
+
+  it('LoadPokemonAction should reset pokemon', () => {
+    const pokemon = {
+      name: 'pikachu',
+      pictureUrl: 'PICTURE_URL'
+    };
+    const action = LoadPokemonAction();
+
+    const state = pokemonReducer({...initialState, pokemon}, action);
+
+    expect(state).toEqual({
+      ...initialState
+    });
   });
 
   it('LoadPokemonSuccessAction should update pokemon', () => {

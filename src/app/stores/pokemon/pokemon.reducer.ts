@@ -5,6 +5,7 @@ import {
   IncorrectAnswerAction,
   LoadNumberOfPokemonsFailureAction,
   LoadNumberOfPokemonsSuccessAction,
+  LoadPokemonAction,
   LoadPokemonSuccessAction
 } from "./pokemon.action";
 
@@ -15,6 +16,7 @@ const onLoadNumberOfPokemonsSuccess = (state: PokemonState, {numberOfPokemons}: 
 
 const onLoadNumberOfPokemonsFailure = (state: PokemonState) => ({...state, numberOfPokemons: 0});
 
+const onLoadPokemon = (state: PokemonState) => ({...state, pokemon: undefined});
 const onLoadPokemonSuccess = (state: PokemonState, {pokemon}: { pokemon: Pokemon }) => ({
   ...state,
   pokemon
@@ -38,6 +40,7 @@ export const pokemonReducer = createReducer(
   PokemonInitialState,
   on(LoadNumberOfPokemonsSuccessAction, onLoadNumberOfPokemonsSuccess),
   on(LoadNumberOfPokemonsFailureAction, onLoadNumberOfPokemonsFailure),
+  on(LoadPokemonAction, onLoadPokemon),
   on(LoadPokemonSuccessAction, onLoadPokemonSuccess),
   on(CorrectAnswerAction, onCorrectAnswer),
   on(IncorrectAnswerAction, onIncorrectAnswer)
