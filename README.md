@@ -7,6 +7,7 @@ Demo [here](https://pokemon-guessr.netlify.app/)
 ## TODO list
 
 - use unidecode or similar to accept some special characters
+- display more info on pokemon
 - i18n
 - Game settings :
   - Filter By region
