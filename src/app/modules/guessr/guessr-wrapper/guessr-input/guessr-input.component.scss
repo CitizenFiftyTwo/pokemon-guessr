@@ -1,0 +1,28 @@
+:host {
+  width: 100%;
+
+  form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+      margin: 20px 0;
+      font-size: 1.5rem;;
+      width: 50%;
+      border-radius: 0.2rem;
+      padding: 1.5rem 2rem;
+    }
+
+    button {
+      &:hover {
+        cursor: pointer;
+      }
+
+      font-size: 1.5rem;;
+      width: 50%;
+      padding: 1.5rem;
+    }
+  }
+}

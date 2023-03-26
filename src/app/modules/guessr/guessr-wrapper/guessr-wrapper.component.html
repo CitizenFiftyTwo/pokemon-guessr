@@ -1,6 +1,6 @@
 <ng-container *ngIf="pokemon$ | async as pokemon">
   <p>{{ 'POKEMON_GUESSR.QUESTION' | translate }}</p>
   <img src="{{pokemon.pictureUrl}}" alt="Pokemon picture">
-  <p> {{pokemon.name}}</p>
+  <app-guessr-input [pokemonName]="pokemon.name"></app-guessr-input>
 </ng-container>
 

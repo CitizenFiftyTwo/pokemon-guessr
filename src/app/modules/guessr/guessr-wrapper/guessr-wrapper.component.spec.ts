@@ -6,6 +6,7 @@ import { MockStore, provideMockStore } from "@ngrx/store/testing";
 import { selectNumberOfPokemons, selectPokemon } from "../../../stores/pokemon";
 import { LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
 import { RandomNumberService } from "../../../services/random-number.service";
+import { GuessrModule } from "../guessr.module";
 
 describe('GuessrWrapperComponent', () => {
   let component: GuessrWrapperComponent;
@@ -19,7 +20,10 @@ describe('GuessrWrapperComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [GuessrWrapperComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [
+        GuessrModule,
+        TranslateModule.forRoot()
+      ],
       providers: [
         provideMockStore({
           selectors: [

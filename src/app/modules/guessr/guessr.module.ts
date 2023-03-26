@@ -4,14 +4,18 @@ import { GuessrWrapperComponent } from "./guessr-wrapper/guessr-wrapper.componen
 import { TranslateModule } from "@ngx-translate/core";
 import { PokemonService } from "../../services/pokemon.service";
 import { RandomNumberService } from "../../services/random-number.service";
+import { GuessrInputComponent } from './guessr-wrapper/guessr-input/guessr-input.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
-    GuessrWrapperComponent
+    GuessrWrapperComponent,
+    GuessrInputComponent
   ],
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule
   ],
   providers: [
     PokemonService,
