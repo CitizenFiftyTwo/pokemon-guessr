@@ -1,6 +1,6 @@
 <ng-container *ngIf="pokemon$ | async as pokemon">
-  <p>{{'POKEMON' | translate}}</p>
-  <img src="{{pokemon.pictureUrl}}" alt="SVG Image">
+  <p>{{ 'POKEMON_GUESSR.QUESTION' | translate }}</p>
+  <img src="{{pokemon.pictureUrl}}" alt="Pokemon picture">
   <p> {{pokemon.name}}</p>
 </ng-container>
 

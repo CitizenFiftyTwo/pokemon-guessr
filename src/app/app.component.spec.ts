@@ -14,7 +14,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
       imports: [
-        TranslateModule,
+        TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([])
       ],
       providers: [

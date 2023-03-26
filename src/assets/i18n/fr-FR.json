@@ -1,3 +1,6 @@
 {
-  "POKEMON": "Pokemon Guessr"
+  "POKEMON_GUESSR": {
+    "TITLE": "Pokemon Guessr",
+    "QUESTION": "Commment s'appelle ce Pokémon ?"
+  }
 }
