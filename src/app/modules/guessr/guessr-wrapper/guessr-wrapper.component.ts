@@ -32,4 +32,8 @@ export class GuessrWrapperComponent implements OnInit {
   handleIncorrectAnswer() {
     this.store.dispatch(IncorrectAnswerAction())
   }
+
+  getNextPokemon() {
+    this.store.dispatch(LoadPokemonAction())
+  }
 }

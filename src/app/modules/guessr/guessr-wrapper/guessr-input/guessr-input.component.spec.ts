@@ -23,13 +23,24 @@ describe('GuessrInputComponent', () => {
     fixture.detectChanges();
   });
 
-  it('onChanges should set isAnswerSubmitted to false ', () => {
-    component.isAnswerSubmitted = true
+  describe('onChanges', () => {
+    it('should set isAnswerSubmitted to false ', () => {
+      component.isAnswerSubmitted = true
 
-    component.ngOnChanges()
+      component.ngOnChanges()
 
-    expect(component.isAnswerSubmitted).toBeFalse()
-  });
+      expect(component.isAnswerSubmitted).toBeFalse()
+    });
+
+    it('should reset pokemonInputName ', () => {
+      component.pokemonInputName = 'pikachu'
+
+      component.ngOnChanges()
+
+      expect(component.pokemonInputName).toEqual('')
+    });
+  })
+
 
   describe('submit', () => {
     it('should set isAnswerSubmitted to true', () => {
@@ -68,4 +79,14 @@ describe('GuessrInputComponent', () => {
       expect(emitAnswerIsIncorrectSpy).toHaveBeenCalled()
     });
   });
+
+  describe('getNextPokemon', () => {
+    it('should emit nextPokemonRequested', () => {
+      let emitAnswerIsCorrectSpy = spyOn(component.nextPokemonRequested, 'emit');
+
+      component.getNextPokemon()
+
+      expect(emitAnswerIsCorrectSpy).toHaveBeenCalled()
+    })
+  })
 });

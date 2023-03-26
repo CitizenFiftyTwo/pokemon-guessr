@@ -1,7 +1,10 @@
-<form (ngSubmit)="submit()" *ngIf="!isAnswerSubmitted else test">
-  <input type="text" name="name" [(ngModel)]="pokemonInputName">
+<form (ngSubmit)="submit()" *ngIf="!isAnswerSubmitted else correctAnswer">
+  <input autofocus type="text" name="name" [(ngModel)]="pokemonInputName">
   <button type="submit">{{'POKEMON_GUESSR.SUBMIT' | translate}}</button>
 </form>
-<ng-template #test>
+<ng-template #correctAnswer>
   <div class="correct-answer">{{pokemonName}}</div>
+  <form (ngSubmit)="getNextPokemon()">
+    <button autofocus type="submit">{{'POKEMON_GUESSR.NEXT_POKEMON' | translate}}</button>
+  </form>
 </ng-template>

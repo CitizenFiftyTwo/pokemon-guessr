@@ -4,6 +4,7 @@
   <app-guessr-input [pokemonName]="pokemon.name"
                     (answerIsCorrect)="handleCorrectAnswer()"
                     (answerIsIncorrect)="handleIncorrectAnswer()"
+                    (nextPokemonRequested)="getNextPokemon()"
   ></app-guessr-input>
   <div *ngIf="(numberOfQuestionsAked$ | async) || 0 > 0">
     {{ 'POKEMON_GUESSR.SCORE' | translate}} : {{ numberOfCorrectAnswers$ | async}}

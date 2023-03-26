@@ -120,4 +120,13 @@ describe('GuessrWrapperComponent', () => {
     });
   })
 
+  describe('getNextPokemon', () => {
+    it('should dispatch LoadPokemonAction', () => {
+      let dispatchSpyOn = spyOn(mockStore, 'dispatch');
+
+      component.getNextPokemon();
+
+      expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonAction());
+    });
+  })
 });

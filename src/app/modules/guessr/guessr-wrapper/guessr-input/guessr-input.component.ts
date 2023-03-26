@@ -16,17 +16,26 @@ export class GuessrInputComponent implements OnChanges {
   @Output()
   answerIsIncorrect = new EventEmitter<void>();
 
+  @Output()
+  nextPokemonRequested = new EventEmitter<void>();
+
   pokemonInputName: string = ''
   isAnswerSubmitted = false
 
   ngOnChanges(): void {
     this.isAnswerSubmitted = false;
+    this.pokemonInputName = '';
   }
 
   submit() {
     this.isAnswerSubmitted = true;
     this.isCorrectAnswer() ? this.answerIsCorrect.emit() : this.answerIsIncorrect.emit()
   }
+
+  getNextPokemon() {
+    this.nextPokemonRequested.emit()
+  }
+
 
   private isCorrectAnswer(): boolean {
     return this.pokemonName.toLowerCase() === this.pokemonInputName.toLowerCase()
