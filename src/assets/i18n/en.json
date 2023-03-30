@@ -1,0 +1,9 @@
+{
+  "POKEMON_GUESSR": {
+    "TITLE": "Pokemon Guessr",
+    "QUESTION": "What it this Pokemon ?",
+    "SUBMIT": "Submit",
+    "SCORE": "Score",
+    "NEXT_POKEMON": "Next Pokemon"
+  }
+}

@@ -26,7 +26,6 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     (environment.production ? [] : [StoreDevtoolsModule.instrument({maxAge: 25})]),
     EffectsModule.forRoot(effects),
     TranslateModule.forRoot({
-      defaultLanguage: 'fr-FR',
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),

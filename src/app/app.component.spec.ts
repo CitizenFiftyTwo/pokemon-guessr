@@ -2,16 +2,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { TranslateModule } from "@ngx-translate/core";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { LoadNumberOfPokemonsAction } from "./stores/pokemon/pokemon.action";
 import { selectNumberOfPokemons } from "./stores/pokemon";
+import { selectLanguage } from "./stores/settings";
+import { PokemonService } from "./services/pokemon.service";
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let mockStore: MockStore;
+  let translateServiceSpy: jasmine.SpyObj<TranslateService>;
 
   beforeEach(async () => {
+    translateServiceSpy = jasmine.createSpyObj('PokemonService', ['use']);
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
       imports: [
@@ -19,11 +23,19 @@ describe('AppComponent', () => {
         RouterTestingModule.withRoutes([])
       ],
       providers: [
+        {
+          provide: TranslateService,
+          useValue: translateServiceSpy
+        },
         provideMockStore({
           selectors: [
             {
               selector: selectNumberOfPokemons,
               value: 151
+            },
+            {
+              selector: selectLanguage,
+              value: 'en'
             }
           ]
         }),
@@ -50,6 +62,12 @@ describe('AppComponent', () => {
       component.numberOfPokemons$.subscribe(numberOfPokemons => {
         expect(numberOfPokemons).toEqual(151);
       });
+    });
+
+    it('should use selected language ', () => {
+      component.ngOnInit();
+
+      expect(translateServiceSpy.use).toHaveBeenCalledWith('en');
     });
   });
 });

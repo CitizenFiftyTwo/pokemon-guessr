@@ -1,7 +1,10 @@
-import * as fromPokemon from './stores/pokemon'
+import * as fromPokemon from './stores/pokemon';
+import * as fromSettings from './stores/settings';
+import { GlobalEffects } from "./stores/global/global.effect";
 
 export interface AppState {
   pokemon?: fromPokemon.PokemonState;
+  settings?: fromSettings.SettingsState;
 }
 
 export function AppInitialState(): AppState {
@@ -11,9 +14,11 @@ export function AppInitialState(): AppState {
 }
 
 export const reducers = {
-  pokemon: fromPokemon.pokemonReducer
+  pokemon: fromPokemon.pokemonReducer,
+  settings: fromSettings.settingsReducer
 };
 
 export const effects = [
+  GlobalEffects,
   fromPokemon.PokemonEffects
 ];
