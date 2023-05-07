@@ -1,0 +1,62 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+:host {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+
+  .top {
+    flex: 1;
+    display: flex;
+    background-color: colors.$color-application;
+    align-items: center;
+    justify-content: center;
+
+    .title {
+      @include fonts.font-36px-semi-bold;
+      color: colors.$color-white;
+    }
+  }
+
+  .center {
+    color: colors.$color-white;
+    border: none;
+    background: colors.$color-black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+
+    button {
+      width: 7rem;
+      height: 7rem;
+      background-color: colors.$color-white;
+      border: 10px solid colors.$color-black;
+      color: colors.$color-black;
+      border-radius: 50%;
+      position: absolute;
+      transition: all 0.25s;
+      @include fonts.font-36px-semi-bold;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .bottom {
+    flex: 1;
+    padding: 2rem;
+    @include fonts.font-24px-semi-bold;
+
+    select {
+      margin-left: 1rem;
+      padding: 5px;
+      border-color: 10px colors.$color-black;
+    }
+  }
+}
+
+

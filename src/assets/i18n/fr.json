@@ -1,9 +1,14 @@
 {
   "POKEMON_GUESSR": {
     "TITLE": "Pokemon Guessr",
+    "GO": "Go !",
     "QUESTION": "Commment s'appelle ce Pokémon ?",
     "SUBMIT": "Valider",
     "SCORE": "Score",
     "NEXT_POKEMON": "Pokémon suivant"
+  },
+  "SETTINGS": {
+    "TITLE": "Paramètres",
+    "LANGUAGE": "Langue"
   }
 }

@@ -1,4 +1,14 @@
-$color-red: #FC4642;
+@use "sass:color";
+
+$color-application: #FC4642;
+$color-application-84: color.scale($color-application, $lightness: 16%) !default;
+$color-application-64: color.scale($color-application, $lightness: 36%) !default;
+$color-application-54: color.scale($color-application, $lightness: 46%) !default;
+$color-application-32: color.scale($color-application, $lightness: 68%) !default;
+$color-application-20: color.scale($color-application, $lightness: 80%) !default;
+$color-application-10: color.scale($color-application, $lightness: 90%) !default;
+$color-application-5: color.scale($color-application, $lightness: 95%) !default;
+
 $color-black: #1B375E;
 $color-light-blue: #EFF9FF;
 $color-white: #FFFFFF;

@@ -47,6 +47,10 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
   });
 
+  afterEach(() => {
+    mockStore?.resetSelectors();
+  });
+
   describe('OnInit should dispatch load number of pokemons ', () => {
     it('should dispatch load number of pokemons ', () => {
       let dispatchSpyOn = spyOn(mockStore, 'dispatch');

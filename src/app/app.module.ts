@@ -12,6 +12,7 @@ import { AppInitialState, effects, reducers } from "./app.ngrx";
 import { EffectsModule } from "@ngrx/effects";
 import { environment } from "../environments/environment";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { SettingsModule } from "./modules/settings/settings.module";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     AppRoutingModule,
     HttpClientModule,
     GuessrModule,
+    SettingsModule,
     StoreModule.forRoot(reducers, {initialState: AppInitialState()}),
     (environment.production ? [] : [StoreDevtoolsModule.instrument({maxAge: 25})]),
     EffectsModule.forRoot(effects),

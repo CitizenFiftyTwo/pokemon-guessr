@@ -46,4 +46,12 @@ describe('LanguageService', () => {
       expect(browserLanguage).toEqual('fr');
     });
   })
+
+  describe('getAvailableLanguages', () => {
+    it('should return available languages', () => {
+      const availableLanguagues = service.getAvailableLanguages();
+
+      expect(availableLanguagues).toEqual(['fr', 'en']);
+    });
+  });
 });
