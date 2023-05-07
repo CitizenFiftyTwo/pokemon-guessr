@@ -1,4 +1,4 @@
-import { PokemonService } from "../../services/pokemon.service";
+import { PokemonService } from "../../services/http/pokemon.service";
 import { TestBed } from "@angular/core/testing";
 import { Observable, of } from "rxjs";
 import { provideMockActions } from "@ngrx/effects/testing";

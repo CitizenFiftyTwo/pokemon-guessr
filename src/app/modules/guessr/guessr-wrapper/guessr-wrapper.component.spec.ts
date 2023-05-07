@@ -17,7 +17,6 @@ describe('GuessrWrapperComponent', () => {
   let fixture: ComponentFixture<GuessrWrapperComponent>;
   let mockStore: MockStore;
 
-
   beforeEach(async () => {
 
     await TestBed.configureTestingModule({

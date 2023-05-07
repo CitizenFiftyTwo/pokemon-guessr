@@ -8,7 +8,7 @@ const PokemonActionTypes = {
   LOAD_POKEMON_SUCCESS: '[Pokemon] Load pokemon success',
   LOAD_POKEMON_FAILURE: '[Pokemon] Load pokemon failure',
   CORRECT_ANSWER: '[Pokemon] A correct answer',
-  INCORRECT_ANSWER: '[Pokemon] An incorrect answer',
+  INCORRECT_ANSWER: '[Pokemon] An incorrect answer'
 };
 
 

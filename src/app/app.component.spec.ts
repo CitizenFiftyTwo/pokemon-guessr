@@ -6,7 +6,7 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { LoadNumberOfPokemonsAction } from "./stores/pokemon/pokemon.action";
 import { selectNumberOfPokemons } from "./stores/pokemon";
 import { selectLanguage } from "./stores/settings";
-import { PokemonService } from "./services/pokemon.service";
+import { PokemonService } from "./services/http/pokemon.service";
 
 describe('AppComponent', () => {
   let component: AppComponent;

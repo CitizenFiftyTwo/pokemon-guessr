@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { catchError, forkJoin, map, mergeMap, Observable, of, withLatestFrom } from "rxjs";
-import { PokemonService } from "../../services/pokemon.service";
+import { PokemonService } from "../../services/http/pokemon.service";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import {
   LoadNumberOfPokemonsAction,
