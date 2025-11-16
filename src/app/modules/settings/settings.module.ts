@@ -5,6 +5,7 @@ import { CommonComponentsModule } from "../../common/common-components.module";
 import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
 import { NavigationService } from "../../services/navigation.service";
+import { MultiSelectModule } from "primeng/multiselect";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NavigationService } from "../../services/navigation.service";
     CommonModule,
     TranslateModule,
     CommonComponentsModule,
-    FormsModule
+    FormsModule,
+    MultiSelectModule
   ],
   providers: [
     NavigationService

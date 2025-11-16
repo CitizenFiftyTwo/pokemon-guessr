@@ -10,5 +10,9 @@
   "SETTINGS": {
     "TITLE": "Paramètres",
     "LANGUAGE": "Langue"
+  },
+  "LANGUAGES": {
+    "FR": "Français",
+    "EN": "Anglais"
   }
 }

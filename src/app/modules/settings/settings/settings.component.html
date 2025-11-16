@@ -1,15 +1,15 @@
 <div class="top">
-  <h1 class="title">{{'POKEMON_GUESSR.TITLE' | translate}}</h1>
+  <h1 class="title">{{ 'POKEMON_GUESSR.TITLE' | translate }}</h1>
 </div>
 <div class="center">
-  <button (click)="launchGame()">{{'POKEMON_GUESSR.GO' | translate}}</button>
+  <button (click)="launchGame()">{{ 'POKEMON_GUESSR.GO' | translate }}</button>
 </div>
 <div class="bottom">
-  <h2>{{'SETTINGS.TITLE' | translate}}</h2>
-  <div>
-    <label>{{'SETTINGS.LANGUAGE' | translate}}</label>
-    <select [(ngModel)]="selectedLanguage">
-      <option *ngFor="let language of availableLanguages" [value]="language">{{language | uppercase}}</option>
-    </select>
-  </div>
+  <h2>{{ 'SETTINGS.TITLE' | translate }}</h2>
+  <p-multiSelect
+    *ngIf="availableLanguages.length > 0"
+    [options]="availableLanguages"
+    optionLabel="label"
+    optionValue="value"
+    placeholder="Select Cities"/>
 </div>

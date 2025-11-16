@@ -13,6 +13,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { environment } from "../environments/environment";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { SettingsModule } from "./modules/settings/settings.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SettingsModule } from "./modules/settings/settings.module";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     GuessrModule,
