@@ -14,6 +14,8 @@ import { environment } from "../environments/environment";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { SettingsModule } from "./modules/settings/settings.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { providePrimeNG } from "primeng/config";
+import Aura from '@primeng/themes/aura';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,13 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
       }
     }),
   ],
-  providers: [],
+  providers: [
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }
+    })
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
