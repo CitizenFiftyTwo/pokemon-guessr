@@ -25,7 +25,7 @@ import { SettingsModule } from "./modules/settings/settings.module";
     GuessrModule,
     SettingsModule,
     StoreModule.forRoot(reducers, {initialState: AppInitialState()}),
-    (environment.production ? [] : [StoreDevtoolsModule.instrument({maxAge: 25})]),
+    (environment.production ? [] : [StoreDevtoolsModule.instrument({maxAge: 25, connectInZone: true})]),
     EffectsModule.forRoot(effects),
     TranslateModule.forRoot({
       loader: {
