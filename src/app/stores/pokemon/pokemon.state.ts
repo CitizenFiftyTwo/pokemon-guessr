@@ -1,5 +1,6 @@
 import { createSelector } from "@ngrx/store";
 import { AppState } from "../../app.ngrx";
+import { Pokemon } from "../../typings";
 
 export interface PokemonState {
   numberOfPokemons: number,

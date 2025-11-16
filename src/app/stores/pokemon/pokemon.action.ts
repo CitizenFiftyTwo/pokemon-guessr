@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Pokemon } from "../../typings";
 
 const PokemonActionTypes = {
   LOAD_NUMBER_OF_POKEMONS: '[Pokemon] Load number of Pokemons',

@@ -8,6 +8,7 @@ import {
   LoadPokemonAction,
   LoadPokemonSuccessAction
 } from "./pokemon.action";
+import { Pokemon } from "../../typings";
 
 const onLoadNumberOfPokemonsSuccess = (state: PokemonState, {numberOfPokemons}: { numberOfPokemons: number }) => ({
   ...state,

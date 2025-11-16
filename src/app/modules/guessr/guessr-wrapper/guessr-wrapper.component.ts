@@ -3,6 +3,7 @@ import { Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { CorrectAnswerAction, IncorrectAnswerAction, LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
 import { selectNumberOfCorrectAnswers, selectNumberOfQuestionsAsked, selectPokemon } from "../../../stores/pokemon";
+import { Pokemon } from "../../../typings";
 
 @Component({
   selector: 'app-guessr-wrapper',
