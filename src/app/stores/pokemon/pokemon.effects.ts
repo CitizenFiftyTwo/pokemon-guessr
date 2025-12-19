@@ -13,6 +13,7 @@ import {
 import { Action, Store } from "@ngrx/store";
 import { selectNumberOfPokemons } from "./pokemon.state";
 import { RandomNumberService } from "../../services/random-number.service";
+import {selectLanguage} from "../settings";
 
 @Injectable()
 export class PokemonEffects {
@@ -37,10 +38,10 @@ export class PokemonEffects {
 
   loadPokemon$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(LoadPokemonAction),
-    withLatestFrom(this.store.select(selectNumberOfPokemons)),
-    mergeMap(([_, numberOfPokemons]) => {
+    withLatestFrom(this.store.select(selectNumberOfPokemons), this.store.select(selectLanguage)),
+    mergeMap(([_, numberOfPokemons, selectedLanguage]) => {
         const randomPokemonId = this.randomNumberService.getRandomNumber(numberOfPokemons);
-        const pokemonName = this.pokemonService.getPokemonName(randomPokemonId);
+        const pokemonName = this.pokemonService.getPokemonName(randomPokemonId, selectedLanguage);
         const pokemonPictureUrl = this.pokemonService.getPokemonPictureUrl(randomPokemonId);
         return forkJoin([pokemonName, pokemonPictureUrl]).pipe(
           map(([name, pictureUrl]) => {

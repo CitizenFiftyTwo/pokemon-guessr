@@ -34,7 +34,7 @@ export class SettingsComponent implements OnInit {
     ).subscribe(translations => {
 
       this.availableLanguages = languages.map(lang => ({
-        value: lang.toUpperCase(),
+        value: lang,
         label: translations['LANGUAGES.' + lang.toUpperCase()],
       })).sort((a, b) => a.label.localeCompare(b.label));
     });
@@ -47,12 +47,12 @@ export class SettingsComponent implements OnInit {
 
   private initForm(): FormGroup {
     return this.formBuilder.group({
-      language: ['FR', Validators.required],
+      language: ['fr', Validators.required],
       numberOfRounds: [10, Validators.required],
     });
   }
 
   get selectedLanguage() {
-    return this.form.get('language')?.value as FormControl;
+    return this.form.get('language') as FormControl;
   }
 }

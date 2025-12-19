@@ -93,7 +93,7 @@ describe('GuessrWrapperComponent', () => {
     it('should select number of quesstions asked', () => {
       component.ngOnInit();
 
-      component.numberOfQuestionsAked$.subscribe(numberOfQuestionsAked => {
+      component.numberOfQuestionsAsked$.subscribe(numberOfQuestionsAked => {
         expect(numberOfQuestionsAked).toEqual(20);
       });
     });

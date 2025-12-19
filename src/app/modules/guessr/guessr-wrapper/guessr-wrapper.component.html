@@ -9,9 +9,9 @@
                     (answerIsIncorrect)="handleIncorrectAnswer()"
                     (nextPokemonRequested)="getNextPokemon()"
   ></app-guessr-input>
-  <div *ngIf="(numberOfQuestionsAked$ | async) || 0 > 0">
+  <div *ngIf="(numberOfQuestionsAsked$ | async) || 0 > 0">
     {{ 'POKEMON_GUESSR.SCORE' | translate}} : {{ numberOfCorrectAnswers$ | async}}
-    / {{ numberOfQuestionsAked$ | async }}</div>
+    / {{ numberOfQuestionsAsked$ | async }}</div>
 </div>
 <ng-template #loader>
   <app-loader></app-loader>

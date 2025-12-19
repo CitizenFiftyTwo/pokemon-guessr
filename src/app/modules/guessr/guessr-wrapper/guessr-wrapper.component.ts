@@ -14,14 +14,14 @@ export class GuessrWrapperComponent implements OnInit {
 
   pokemon$: Observable<Pokemon | undefined> = of(undefined)
   numberOfCorrectAnswers$: Observable<number> = of(0)
-  numberOfQuestionsAked$: Observable<number> = of(0)
+  numberOfQuestionsAsked$: Observable<number> = of(0)
 
   constructor(private store: Store) {
   }
 
   ngOnInit(): void {
     this.pokemon$ = this.store.select(selectPokemon);
-    this.numberOfQuestionsAked$ = this.store.select(selectNumberOfQuestionsAsked);
+    this.numberOfQuestionsAsked$ = this.store.select(selectNumberOfQuestionsAsked);
     this.numberOfCorrectAnswers$ = this.store.select(selectNumberOfCorrectAnswers);
     this.store.dispatch(LoadPokemonAction());
   }
