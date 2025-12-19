@@ -5,6 +5,7 @@ import { Store } from "@ngrx/store";
 import { SetLanguageAction } from "../../../stores/settings/settings.action";
 import { SelectOption } from "../../../typings";
 import { TranslateService } from "@ngx-translate/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-settings',
@@ -13,12 +14,16 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class SettingsComponent implements OnInit {
   availableLanguages: SelectOption[] = [];
-  selectedLanguage = '';
+  availableNumberOfRounds = [5, 10, 15, 20];
+
+  form: FormGroup;
 
   constructor(private languageService: LanguageService,
+              private formBuilder: FormBuilder,
               private store: Store,
               private navigationService: NavigationService,
               private translateService: TranslateService) {
+    this.form = this.initForm();
   }
 
   ngOnInit(): void {
@@ -29,16 +34,25 @@ export class SettingsComponent implements OnInit {
     ).subscribe(translations => {
 
       this.availableLanguages = languages.map(lang => ({
-        value: lang,
+        value: lang.toUpperCase(),
         label: translations['LANGUAGES.' + lang.toUpperCase()],
       })).sort((a, b) => a.label.localeCompare(b.label));
-
-      this.selectedLanguage = this.languageService.getLanguage();
     });
   }
 
   launchGame() {
-    this.store.dispatch(SetLanguageAction({language: this.selectedLanguage}));
+    this.store.dispatch(SetLanguageAction({language: this.selectedLanguage.value}));
     this.navigationService.toGame();
+  }
+
+  private initForm(): FormGroup {
+    return this.formBuilder.group({
+      language: ['FR', Validators.required],
+      numberOfRounds: [10, Validators.required],
+    });
+  }
+
+  get selectedLanguage() {
+    return this.form.get('language')?.value as FormControl;
   }
 }

@@ -8,8 +8,11 @@
     "NEXT_POKEMON": "Pokémon suivant"
   },
   "SETTINGS": {
-    "TITLE": "Paramètres",
-    "LANGUAGE": "Langue"
+    "SUBTITLE": "Testez vos connaissances en Pokémon !",
+    "LANGUAGE": "Langue des noms de Pokémon",
+    "GENERATION": "Génération(s)",
+    "NUMBER_OF_ROUNDS": "Nombre de manches",
+    "START_GAME": "Lancer la partie"
   },
   "LANGUAGES": {
     "FR": "Français",
