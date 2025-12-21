@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
 @Component({
   selector: 'app-guessr-input',
@@ -36,7 +36,8 @@ export class GuessrInputComponent implements OnChanges {
     this.nextPokemonRequested.emit()
   }
 
-  private isCorrectAnswer(): boolean {
+  isCorrectAnswer(): boolean {
+    debugger
     return this.normalize(this.pokemonName) === this.normalize(this.pokemonInputName)
   }
 

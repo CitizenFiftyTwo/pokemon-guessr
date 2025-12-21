@@ -12,6 +12,7 @@
       alt="Who's that pokemon?"
       class="pokemon-image"
     />
+    <span *ngIf="displayPokemonName" class="pokemon-name">{{ pokemon.name }}</span>
   </div>
   <app-guessr-input [pokemonName]="pokemon.name"
                     (answerIsCorrect)="handleCorrectAnswer()"

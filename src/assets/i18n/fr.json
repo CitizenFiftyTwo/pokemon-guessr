@@ -5,7 +5,9 @@
     "QUESTION": "Commment s'appelle ce Pokémon ?",
     "SUBMIT": "Valider",
     "SCORE": "Score",
-    "NEXT_POKEMON": "Pokémon suivant"
+    "NEXT_POKEMON": "Pokémon suivant",
+    "CORRECT": "Bien joué !",
+    "INCORRECT": "Bien essayé !"
   },
   "SETTINGS": {
     "SUBTITLE": "Testez vos connaissances en Pokémon !",

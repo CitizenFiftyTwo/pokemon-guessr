@@ -15,6 +15,7 @@ export class GuessrWrapperComponent implements OnInit {
   pokemon$: Observable<Pokemon | undefined> = of(undefined)
   numberOfCorrectAnswers$: Observable<number> = of(0)
   numberOfQuestionsAsked$: Observable<number> = of(0)
+  displayPokemonName = false;
 
   constructor(private store: Store) {
   }
@@ -27,14 +28,17 @@ export class GuessrWrapperComponent implements OnInit {
   }
 
   handleCorrectAnswer() {
+    this.displayPokemonName = true;
     this.store.dispatch(CorrectAnswerAction())
   }
 
   handleIncorrectAnswer() {
+    this.displayPokemonName = true;
     this.store.dispatch(IncorrectAnswerAction())
   }
 
   getNextPokemon() {
+    this.displayPokemonName = false;
     this.store.dispatch(LoadPokemonAction())
   }
 }

@@ -1,5 +1,6 @@
 @use "src/styles/colors";
 @use "src/styles/shadows";
+@use "src/styles/fonts";
 
 :host {
   @include shadows.soft-shadow();
@@ -15,15 +16,29 @@
     gap: 0.5rem;
   }
 
-  .correct-answer {
+  .next-pokemon-container {
     display: flex;
     gap: 12px;
+    align-items: center;
 
-    span {
+    .answer {
+      @include fonts.font-24px-semi-bold;
       flex: 1;
-      font-size: 2.25rem;
-      font-weight: bold;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .pi {
+        font-size: 1.5rem;
+      }
+
+      &.incorrect {
+        color: colors.$color-application;
+      }
+
+      &.correct {
+        color: colors.$color-green;
+      }
     }
   }
 }
