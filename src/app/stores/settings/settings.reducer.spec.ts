@@ -17,13 +17,14 @@ describe('SettingsReducer', () => {
   });
 
   it('SetLanguageAction should update language', () => {
-    const action = SetSettingsAction({language: 'fr'});
+    const action = SetSettingsAction({language: 'fr', numberOfRounds: 0});
 
     const state = settingsReducer(initialState, action);
 
     expect(state).toEqual({
       ...initialState,
-      language: 'fr'
+      language: 'fr',
+      numberOfRounds: 0
     });
   });
 });

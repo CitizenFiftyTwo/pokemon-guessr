@@ -32,7 +32,7 @@ describe('GlobalEffects', () => {
   describe('Init Language', () => {
     it('should dispatch success with number of pokemons', () => {
       languageServiceSpy.getLanguage.and.returnValue('fr');
-      const expectedAction = SetSettingsAction({language: 'fr'});
+      const expectedAction = SetSettingsAction({language: 'fr', numberOfRounds: 10});
 
       actions$ = hot('a', {a: {type: ROOT_EFFECTS_INIT}});
 

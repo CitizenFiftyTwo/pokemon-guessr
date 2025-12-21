@@ -7,7 +7,8 @@ describe('SettingsState', () => {
 
   beforeEach(() => {
     initialState = {
-      language: 'fr'
+      language: 'fr',
+      numberOfRounds: 0
     };
 
     appState = {
