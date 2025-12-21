@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +19,10 @@ export class PokemonService {
       .pipe(map((result: PokemonSpeciesApiMultipleResult) => result.results.length));
   }
 
-  getPokemonName(pokemonId: number): Observable<string> {
+  getPokemonName(pokemonId: number, selectedLanguage: string): Observable<string> {
     return this.http.get<PokemonSpeciesApiSingleResult>(`${environment.apiUrl}/pokemon-species/${pokemonId}`)
       .pipe(map((result: PokemonSpeciesApiSingleResult) => {
-        const pokemonName = result.names.find(name => name.language.name === this.LANGUAGE_FR);
+        const pokemonName = result.names.find(name => name.language.name === selectedLanguage);
         if (!pokemonName) {
           throw new Error(`Pokemon ${pokemonId} has no name for language ${this.LANGUAGE_FR}`)
         } else {

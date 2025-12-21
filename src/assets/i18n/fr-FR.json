@@ -1,9 +1,0 @@
-{
-  "POKEMON_GUESSR": {
-    "TITLE": "Pokemon Guessr",
-    "QUESTION": "Commment s'appelle ce Pokémon ?",
-    "SUBMIT": "Valider",
-    "SCORE": "Score",
-    "NEXT_POKEMON": "Pokémon suivant"
-  }
-}

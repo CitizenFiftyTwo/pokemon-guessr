@@ -3,7 +3,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { PokemonService } from './pokemon.service';
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { HttpRequest } from "@angular/common/http";
-import { environment } from "../../environments/environment";
+import { environment } from "../../../environments/environment";
 
 describe('PokemonService', () => {
   let service: PokemonService;
@@ -58,7 +58,7 @@ describe('PokemonService', () => {
         ]
       }
 
-      service.getPokemonName(1).subscribe(result => {
+      service.getPokemonName(1, 'fr').subscribe(result => {
         expect(result).toEqual('bulbizarre');
       });
 
@@ -81,7 +81,7 @@ describe('PokemonService', () => {
         ]
       }
 
-      service.getPokemonName(1).subscribe({
+      service.getPokemonName(1, 'fr').subscribe({
         next: () => {
           fail('Expected an error to be thrown');
         },

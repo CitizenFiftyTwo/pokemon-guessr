@@ -1,0 +1,182 @@
+// Text weight
+$bold-weight-bold: 700;
+$bold-weight-semi-bold: 600;
+$bold-weight-regular: 400;
+
+// Text size
+$font-size-41px: 2.5625rem;
+$font-size-36px: 2.25rem;
+$font-size-24px: 1.5rem;
+$font-size-21px: 1.3125rem;
+$font-size-20px: 1.25rem;
+$font-size-18px: 1.125rem;
+$font-size-16px: 1rem;
+$font-size-14px: 0.875rem;
+$font-size-13px: 0.8125rem;
+$font-size-12px: 0.75rem;
+$font-size-11px: 0.6875rem;
+$font-size-10px: 0.625rem;
+$font-size-9px: 0.5625rem;
+
+// Line height
+$line-height-50px: 3.125rem;
+$line-height-44px: 2.75rem;
+$line-height-34px: 2.125rem;
+$line-height-30px: 1.875rem;
+$line-height-26px: 1.625rem;
+$line-height-22px: 1.375rem;
+$line-height-20px: 1.25rem;
+$line-height-18px: 1.125rem;
+$line-height-16px: 1rem;
+$line-height-14px: 0.875rem;
+$line-height-13px: 0.8125rem;
+
+@mixin font-36px-semi-bold {
+  font-size: $font-size-36px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-50px;
+}
+
+@mixin font-24px-bold {
+  font-size: $font-size-24px;
+  font-weight: $bold-weight-bold;
+  line-height: $line-height-34px;
+}
+
+@mixin font-24px-semi-bold {
+  font-size: $font-size-24px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-34px;
+}
+
+@mixin font-24px-regular {
+  font-size: $font-size-24px;
+  font-weight: $bold-weight-regular;
+  line-height: $line-height-34px;
+}
+
+@mixin font-18px-bold {
+  font-size: $font-size-18px;
+  font-weight: $bold-weight-bold;
+  line-height: $line-height-26px;
+}
+
+@mixin font-18px-semi-bold {
+  font-size: $font-size-18px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-26px;
+}
+
+@mixin font-18px-regular {
+  font-size: $font-size-18px;
+  font-weight: $bold-weight-regular;
+  line-height: $line-height-26px;
+}
+
+@mixin font-16px-bold {
+  font-size: $font-size-16px;
+  font-weight: $bold-weight-bold;
+  line-height: $line-height-22px;
+}
+
+@mixin font-16px-semi-bold {
+  font-size: $font-size-16px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-22px;
+}
+
+@mixin font-16px-regular {
+  font-size: $font-size-16px;
+  font-weight: $bold-weight-regular;
+  line-height: $line-height-22px;
+}
+
+@mixin font-14px-bold {
+  font-size: $font-size-14px;
+  font-weight: $bold-weight-bold;
+  line-height: $line-height-20px;
+}
+
+@mixin font-14px-semi-bold {
+  font-size: $font-size-14px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-20px;
+}
+
+@mixin font-14px-regular {
+  font-size: $font-size-14px;
+  font-weight: $bold-weight-regular;
+  line-height: $line-height-20px;
+}
+
+@mixin font-13px-bold {
+  font-size: $font-size-13px;
+  font-weight: $bold-weight-bold;
+  line-height: $line-height-18px;
+}
+
+@mixin font-13px-semi-bold {
+  font-size: $font-size-13px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-18px;
+}
+
+@mixin font-13px-regular {
+  font-size: $font-size-13px;
+  font-weight: $bold-weight-regular;
+  line-height: $line-height-18px;
+}
+
+@mixin font-12px-semi-bold {
+  font-size: $font-size-12px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-18px;
+}
+
+@mixin font-12px-regular {
+  font-size: $font-size-12px;
+  font-weight: $bold-weight-regular;
+  line-height: $line-height-18px;
+}
+
+@mixin font-11px-semi-bold {
+  font-size: $font-size-11px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-16px;
+}
+
+@mixin font-11px-regular {
+  font-size: $font-size-11px;
+  font-weight: $bold-weight-regular;
+  line-height: $line-height-16px;
+}
+
+@mixin font-10px-semi-bold {
+  font-size: $font-size-10px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-14px;
+}
+
+@mixin font-10px-regular {
+  font-size: $font-size-10px;
+  font-weight: $bold-weight-regular;
+  line-height: $line-height-14px;
+}
+
+@mixin font-9px-bold {
+  font-size: $font-size-9px;
+  font-weight: $bold-weight-bold;
+  line-height: $line-height-13px;
+}
+
+@mixin font-9px-semi-bold {
+  font-size: $font-size-9px;
+  font-weight: $bold-weight-semi-bold;
+  line-height: $line-height-13px;
+}
+
+@mixin font-9px-regular {
+  font-size: $font-size-9px;
+  font-weight: $bold-weight-regular;
+  line-height: $line-height-13px;
+}

@@ -1,4 +1,4 @@
-import { PokemonService } from "../../services/pokemon.service";
+import { PokemonService } from "../../services/http/pokemon.service";
 import { TestBed } from "@angular/core/testing";
 import { Observable, of } from "rxjs";
 import { provideMockActions } from "@ngrx/effects/testing";
@@ -14,6 +14,7 @@ import { cold, hot } from "jasmine-marbles";
 import { RandomNumberService } from "../../services/random-number.service";
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
 import { selectNumberOfPokemons } from "./pokemon.state";
+import { selectLanguage } from "../settings";
 
 describe('PokemonEffects', () => {
   let pokemonServiceSpy: jasmine.SpyObj<PokemonService>;
@@ -36,6 +37,10 @@ describe('PokemonEffects', () => {
             {
               selector: selectNumberOfPokemons,
               value: 151
+            },
+            {
+              selector: selectLanguage,
+              value: 'fr'
             }
           ]
         }),
@@ -84,7 +89,7 @@ describe('PokemonEffects', () => {
     const action = LoadPokemonAction();
 
     it('should get pokemon with a random id between 1 and pokemonNumber and dispatch success', () => {
-      pokemonServiceSpy.getPokemonName.withArgs(1).and.returnValue(
+      pokemonServiceSpy.getPokemonName.withArgs(1, 'fr').and.returnValue(
         of('bulbizarre'));
       pokemonServiceSpy.getPokemonPictureUrl.withArgs(1).and.returnValue(of('PICTURE_URL'));
       randomNumberServiceSpy.getRandomNumber.withArgs(151).and.returnValue(1);
@@ -99,7 +104,7 @@ describe('PokemonEffects', () => {
       actions$ = hot('a', {a: action});
 
       expect(effects.loadPokemon$).toBeObservable(cold('b', {b: expectedAction}));
-      expect(pokemonServiceSpy.getPokemonName).toHaveBeenCalledWith(1);
+      expect(pokemonServiceSpy.getPokemonName).toHaveBeenCalledWith(1, 'fr');
       expect(pokemonServiceSpy.getPokemonPictureUrl).toHaveBeenCalledWith(1);
     });
   });

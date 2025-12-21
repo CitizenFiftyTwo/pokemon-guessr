@@ -1,50 +1,44 @@
 @use "src/styles/colors";
+@use "src/styles/shadows";
+@use "src/styles/fonts";
 
 :host {
+  @include shadows.soft-shadow();
   width: 100%;
+  max-width: clamp(320px, 60vw, 640px);
+  background-color: colors.$color-white;
+  padding: 0.5rem;
+  border-radius: 12px;
 
   form {
-    flex: 1;
     display: flex;
-    flex-direction: column;
     align-items: center;
-
-    input {
-      margin: 20px 0;
-      font-size: 1.5rem;;
-      width: 50%;
-      border-radius: 0.5rem;
-      padding: 1.5rem 2rem;
-    }
-
-    button {
-      &:hover {
-        opacity: 0.8;
-        color: colors.$color-white;
-        cursor: pointer;
-        -webkit-transform: translateY(-10px);
-        -ms-transform: translateY(-10px);
-        -o-transform: translateY(-10px);
-        transform: translateY(-10px);
-      }
-
-      -webkit-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-      font-weight: bold;
-      border-radius: 0.5rem;
-      border: 3px solid colors.$color-black;
-      color: colors.$color-white;
-      background-color: colors.$color-electric-blue;
-      font-size: 1.5rem;;
-      padding: 1.5rem;
-      margin: 20px 0;
-    }
+    gap: 0.5rem;
   }
 
-  .correct-answer {
-    font-size: 2.25rem;
-    font-weight: bold;
-    text-align: center;
+  .next-pokemon-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    .answer {
+      @include fonts.font-24px-semi-bold;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .pi {
+        font-size: 1.5rem;
+      }
+
+      &.incorrect {
+        color: colors.$color-application;
+      }
+
+      &.correct {
+        color: colors.$color-green;
+      }
+    }
   }
 }

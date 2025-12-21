@@ -1,0 +1,39 @@
+<div class="settings-container">
+  <div class="pokeball">
+    <div class="pokeball__line"></div>
+    <div class="pokeball__center"></div>
+  </div>
+  <div class="title-container">
+    <span class="title">PokeGuessr</span>
+    <span class="subtitle">{{ 'SETTINGS.SUBTITLE' | translate }}</span>
+  </div>
+  <form [formGroup]="form" class="form">
+    <p-floatlabel variant="on">
+      <p-select formControlName="language"
+                inputId="language"
+                [options]="availableLanguages"
+                size="large" fluid
+                (onChange)="selectLanguage()"/>
+      <label for="language">{{ 'SETTINGS.LANGUAGE' | translate }}</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on">
+      <p-select formControlName="numberOfRounds" inputId="number-of-rounds" [options]="availableNumberOfRounds"
+                size="large" fluid/>
+      <label for="number-of-rounds">{{ 'SETTINGS.NUMBER_OF_ROUNDS' | translate }}</label>
+    </p-floatlabel>
+    <p-button raised (click)="launchGame()" fluid [label]="'SETTINGS.START_GAME' | translate " icon="pi pi-play"
+              size="large"/>
+  </form>
+
+  <!--<p-floatlabel *ngIf="availableLanguages.length > 0" variant="on">
+    <p-multiSelect
+      id="generation"
+      [options]="availableLanguages"
+      size="large"
+      fluid
+      optionLabel="label"
+      optionValue="value"/>
+    <label for="generation">{{ 'SETTINGS.GENERATION' | translate }}</label>
+  </p-floatlabel>
+-->
+</div>

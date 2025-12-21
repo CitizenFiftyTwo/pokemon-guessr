@@ -11,15 +11,16 @@ import {
 } from "../../../stores/pokemon";
 import { CorrectAnswerAction, IncorrectAnswerAction, LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
 import { GuessrModule } from "../guessr.module";
+import { NavigationService } from "../../../services/navigation.service";
 
 describe('GuessrWrapperComponent', () => {
   let component: GuessrWrapperComponent;
   let fixture: ComponentFixture<GuessrWrapperComponent>;
+  let navigationServiceSpy: jasmine.SpyObj<NavigationService>;
   let mockStore: MockStore;
 
-
   beforeEach(async () => {
-
+    navigationServiceSpy = jasmine.createSpyObj('NavigationService', ['toGame']);
     await TestBed.configureTestingModule({
       declarations: [GuessrWrapperComponent],
       imports: [
@@ -27,6 +28,10 @@ describe('GuessrWrapperComponent', () => {
         TranslateModule.forRoot()
       ],
       providers: [
+        {
+          provide: NavigationService,
+          useValue: navigationServiceSpy
+        },
         provideMockStore({
           selectors: [
             {
@@ -94,7 +99,7 @@ describe('GuessrWrapperComponent', () => {
     it('should select number of quesstions asked', () => {
       component.ngOnInit();
 
-      component.numberOfQuestionsAked$.subscribe(numberOfQuestionsAked => {
+      component.numberOfQuestionsAsked$.subscribe(numberOfQuestionsAked => {
         expect(numberOfQuestionsAked).toEqual(20);
       });
     });
@@ -124,7 +129,7 @@ describe('GuessrWrapperComponent', () => {
     it('should dispatch LoadPokemonAction', () => {
       let dispatchSpyOn = spyOn(mockStore, 'dispatch');
 
-      component.getNextPokemon();
+      component.getNextPokemon(0);
 
       expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonAction());
     });

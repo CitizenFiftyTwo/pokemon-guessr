@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pokemon-guessr:build:production"
+              "buildTarget": "pokemon-guessr:build:production"
             },
             "development": {
-              "browserTarget": "pokemon-guessr:build:development"
+              "buildTarget": "pokemon-guessr:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pokemon-guessr:build"
+            "buildTarget": "pokemon-guessr:build"
           }
         },
         "test": {

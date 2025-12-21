@@ -1,0 +1,3 @@
+@mixin soft-shadow($blur: 10px, $color: #0000002E) {
+  box-shadow: 0 0 $blur 0 $color;
+}

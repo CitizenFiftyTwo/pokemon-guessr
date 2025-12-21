@@ -1,0 +1,10 @@
+<div class="title-container">
+  <i class="pi pi-trophy"></i>
+  <span>{{ 'RESULT.GAME_OVER' | translate }}</span>
+</div>
+<div class="content">
+  <span class="score">{{ score }} / {{ numberOfRounds }}</span>
+  <span class="description">{{ getScoreLabel() | translate }}</span>
+  <p-button raised (click)="playAgain()" fluid [label]="'RESULT.PLAY_AGAIN' | translate " icon="pi pi-replay"
+            size="large"/>
+</div>

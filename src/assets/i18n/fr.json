@@ -1,0 +1,33 @@
+{
+  "POKEMON_GUESSR": {
+    "TITLE": "Pokemon Guessr",
+    "GO": "Go !",
+    "QUESTION": "Commment s'appelle ce Pokémon ?",
+    "SUBMIT": "Valider",
+    "SCORE": "Score",
+    "NEXT_POKEMON": "Pokémon suivant",
+    "CORRECT": "Bien joué !",
+    "INCORRECT": "Bien essayé !",
+    "ROUND": "Round",
+    "LOADING": "Chargement de Pokémon..."
+  },
+  "SETTINGS": {
+    "SUBTITLE": "Testez vos connaissances en Pokémon !",
+    "LANGUAGE": "Langue",
+    "GENERATION": "Génération(s)",
+    "NUMBER_OF_ROUNDS": "Nombre de rounds",
+    "START_GAME": "Lancer la partie"
+  },
+  "RESULT": {
+    "GAME_OVER": "Game Over",
+    "SCORE_ZERO": "Tu peux sûrement mieux faire",
+    "SCORE_BAD": "Encore un peu d’entraînement et tu deviendras un vrai dresseur !",
+    "SCORE_OK": "Très bon score ! Tu es un bon dresseur",
+    "SCORE_PERFECT": "Wow t'es un vrai maître dresseur !",
+    "PLAY_AGAIN": "Rejouer"
+  },
+  "LANGUAGES": {
+    "FR": "Français",
+    "EN": "Anglais"
+  }
+}

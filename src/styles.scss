@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @use "src/styles/colors";
+@use "primeicons/primeicons.css";
 
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Outfit", sans-serif;
   color: colors.$color-black;
 }
