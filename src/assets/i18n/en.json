@@ -18,6 +18,14 @@
     "NUMBER_OF_ROUNDS": "Number of rounds",
     "START_GAME": "Start game"
   },
+  "RESULT": {
+    "GAME_OVER": "Game Over",
+    "SCORE_ZERO": "You can definitely do better",
+    "SCORE_BAD": "A bit more training and you'll become a real trainer!",
+    "SCORE_OK": "Great score! You're a solid trainer",
+    "SCORE_PERFECT": "Wow, you're a true Pokémon Master!",
+    "PLAY_AGAIN": "Play again"
+  },
   "LANGUAGES": {
     "FR": "French",
     "EN": "English"

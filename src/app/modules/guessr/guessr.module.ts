@@ -7,11 +7,12 @@ import { RandomNumberService } from "../../services/random-number.service";
 import { GuessrInputComponent } from './guessr-wrapper/guessr-input/guessr-input.component';
 import { FormsModule } from "@angular/forms";
 import { LoaderComponent } from './loader/loader.component';
-import {Chip} from "primeng/chip";
-import {FloatLabel} from "primeng/floatlabel";
-import {InputText} from "primeng/inputtext";
-import {Button} from "primeng/button";
-import {Fluid} from "primeng/fluid";
+import { Chip } from "primeng/chip";
+import { FloatLabel } from "primeng/floatlabel";
+import { InputText } from "primeng/inputtext";
+import { Button } from "primeng/button";
+import { Fluid } from "primeng/fluid";
+import { ResultComponent } from "./result/result.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {Fluid} from "primeng/fluid";
     FloatLabel,
     InputText,
     Button,
-    Fluid
+    Fluid,
+    ResultComponent
   ],
   providers: [
     PokemonService,

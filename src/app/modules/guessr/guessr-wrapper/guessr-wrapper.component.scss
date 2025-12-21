@@ -23,6 +23,10 @@
     padding: 0.5rem;
     border-radius: 12px;
 
+    .score {
+      @include fonts.font-16px-semi-bold;
+    }
+
     .chip {
       background-color: colors.$color-application;
       color: colors.$color-white;

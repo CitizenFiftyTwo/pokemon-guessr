@@ -1,0 +1,54 @@
+@use "src/styles/colors";
+@use "src/styles/shadows";
+@use "src/styles/fonts";
+
+:host {
+  @include shadows.soft-shadow();
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: colors.$color-white;
+  width: 100%;
+  max-width: clamp(320px, 60vw, 640px);
+  border-radius: 12px;
+
+  .title-container {
+    @include fonts.font-24px-semi-bold;
+    font-family: "Press Start 2P", system-ui;
+    background-color: colors.$color-application;
+    color: colors.$color-white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 0.5rem;
+    gap: 12px;
+
+    .pi {
+      font-size: 2.25rem;
+      color: colors.$color-yellow;
+    }
+  }
+
+  .content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+
+    .score {
+      @include fonts.font-36px-semi-bold;
+      color: colors.$color-application;
+    }
+
+    .description {
+      @include fonts.font-16px-semi-bold;
+      color: colors.$color-grey;
+    }
+  }
+
+}

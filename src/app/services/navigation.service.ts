@@ -6,6 +6,10 @@ export class NavigationService {
   constructor(private router: Router) {
   }
 
+  toSettings(): void {
+    this.router.navigate(['']);
+  }
+
   toGame(): void {
     this.router.navigate(['game']);
   }
