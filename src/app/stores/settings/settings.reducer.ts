@@ -1,13 +1,17 @@
 import { createReducer, on } from "@ngrx/store";
 import { SettingsInitialState, SettingsState } from "./settings.state";
-import { SetLanguageAction } from "./settings.action";
+import { SetSettingsAction } from "./settings.action";
 
-const setLanguage = (state: SettingsState, {language}: { language: string }) => ({
+const setSettings = (state: SettingsState, {language, numberOfRounds}: {
+  language: string,
+  numberOfRounds: number
+}) => ({
   ...state,
-  language: language
+  language,
+  numberOfRounds
 });
 
 export const settingsReducer = createReducer(
   SettingsInitialState,
-  on(SetLanguageAction, setLanguage)
+  on(SetSettingsAction, setSettings)
 );

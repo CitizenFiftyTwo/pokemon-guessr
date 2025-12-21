@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LanguageService } from "../../../services/language.service";
 import { NavigationService } from "../../../services/navigation.service";
 import { Store } from "@ngrx/store";
-import { SetLanguageAction } from "../../../stores/settings/settings.action";
+import { SetSettingsAction } from "../../../stores/settings/settings.action";
 import { SelectOption } from "../../../typings";
 import { TranslateService } from "@ngx-translate/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
@@ -41,7 +41,10 @@ export class SettingsComponent implements OnInit {
   }
 
   launchGame() {
-    this.store.dispatch(SetLanguageAction({language: this.selectedLanguage.value}));
+    this.store.dispatch(SetSettingsAction({
+      language: this.selectedLanguage.value,
+      numberOfRounds: this.numberOfRounds.value
+    }));
     this.navigationService.toGame();
   }
 
@@ -54,5 +57,9 @@ export class SettingsComponent implements OnInit {
 
   get selectedLanguage() {
     return this.form.get('language') as FormControl;
+  }
+
+  get numberOfRounds() {
+    return this.form.get('numberOfRounds') as FormControl;
   }
 }

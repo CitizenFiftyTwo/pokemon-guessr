@@ -4,7 +4,7 @@ import { provideMockActions } from "@ngrx/effects/testing";
 import { cold, hot } from "jasmine-marbles";
 import { LanguageService } from "../../services/language.service";
 import { GlobalEffects } from "./global.effect";
-import { SetLanguageAction } from "../settings/settings.action";
+import { SetSettingsAction } from "../settings/settings.action";
 import { ROOT_EFFECTS_INIT } from "@ngrx/effects";
 
 describe('GlobalEffects', () => {
@@ -32,7 +32,7 @@ describe('GlobalEffects', () => {
   describe('Init Language', () => {
     it('should dispatch success with number of pokemons', () => {
       languageServiceSpy.getLanguage.and.returnValue('fr');
-      const expectedAction = SetLanguageAction({language: 'fr'});
+      const expectedAction = SetSettingsAction({language: 'fr'});
 
       actions$ = hot('a', {a: {type: ROOT_EFFECTS_INIT}});
 

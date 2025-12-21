@@ -6,7 +6,7 @@ import { LanguageService } from "../../../services/language.service";
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
 import { FormsModule } from "@angular/forms";
 import { NavigationService } from "../../../services/navigation.service";
-import { SetLanguageAction } from "../../../stores/settings/settings.action";
+import { SetSettingsAction } from "../../../stores/settings/settings.action";
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -75,7 +75,7 @@ describe('SettingsComponent', () => {
 
       component.launchGame();
 
-      expect(dispatchSpyOn).toHaveBeenCalledWith(SetLanguageAction({language: 'fr'}));
+      expect(dispatchSpyOn).toHaveBeenCalledWith(SetSettingsAction({language: 'fr'}));
     });
 
     it('should go to game', () => {

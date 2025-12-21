@@ -1,8 +1,8 @@
 import { createAction, props } from "@ngrx/store";
 
 const SettingsActionTypes = {
-  SET_LANGUAGE: '[Settings] Set language'
+  SET_SETTINGS: '[Settings] Set settings'
 };
 
-export const SetLanguageAction = createAction(SettingsActionTypes.SET_LANGUAGE,
-  props<{ language: string }>());
+export const SetSettingsAction = createAction(SettingsActionTypes.SET_SETTINGS,
+  props<{ language: string, numberOfRounds: number }>());

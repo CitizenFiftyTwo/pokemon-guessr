@@ -1,7 +1,7 @@
 import { SettingsInitialState, SettingsState } from "./settings.state";
 import { settingsReducer } from "./settings.reducer";
 import { INIT } from "@ngrx/store";
-import { SetLanguageAction } from "./settings.action";
+import { SetSettingsAction } from "./settings.action";
 
 describe('SettingsReducer', () => {
   let initialState: SettingsState;
@@ -17,7 +17,7 @@ describe('SettingsReducer', () => {
   });
 
   it('SetLanguageAction should update language', () => {
-    const action = SetLanguageAction({language: 'fr'});
+    const action = SetSettingsAction({language: 'fr'});
 
     const state = settingsReducer(initialState, action);
 
