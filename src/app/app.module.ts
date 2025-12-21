@@ -19,6 +19,9 @@ import Aura from '@primeng/themes/aura';
 import { definePreset } from "@primeng/themes";
 
 const MyPreset = definePreset(Aura, {
+  components: {
+
+  },
   semantic: {
     primary: {
       50: '{red.50}',

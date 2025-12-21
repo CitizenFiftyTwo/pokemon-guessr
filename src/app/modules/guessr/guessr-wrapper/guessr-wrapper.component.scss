@@ -1,16 +1,28 @@
 @use "src/styles/colors";
+@use "src/styles/shadows";
 
 :host {
-  .header {
-    height: 10vh;
-    font-size: 2.25rem;
-    font-weight: bold;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('/assets/img/background.png') center / cover no-repeat;
+
+  .score-container {
+    @include shadows.soft-shadow();
     display: flex;
-    background-color: colors.$color-application;
-    border-bottom: colors.$color-black solid 3px;
-    color: colors.$color-white;
+    justify-content: space-between;
+    align-items: center;
+    background-color: colors.$color-white;
+    width: 50%;
+    padding: 0.5rem;
+    border-radius: 12px;
+
+    .chip {
+      background-color: colors.$color-application-64;
+      color: colors.$color-white;
+    }
   }
 
   .content {

@@ -7,6 +7,7 @@ import { RandomNumberService } from "../../services/random-number.service";
 import { GuessrInputComponent } from './guessr-wrapper/guessr-input/guessr-input.component';
 import { FormsModule } from "@angular/forms";
 import { LoaderComponent } from './loader/loader.component';
+import {Chip} from "primeng/chip";
 
 @NgModule({
   declarations: [
@@ -14,11 +15,12 @@ import { LoaderComponent } from './loader/loader.component';
     GuessrInputComponent,
     LoaderComponent
   ],
-  imports: [
-    CommonModule,
-    TranslateModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        TranslateModule,
+        FormsModule,
+        Chip
+    ],
   providers: [
     PokemonService,
     RandomNumberService

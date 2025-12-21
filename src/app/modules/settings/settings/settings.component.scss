@@ -1,5 +1,6 @@
 @use "src/styles/colors";
 @use "src/styles/fonts";
+@use "src/styles/shadows";
 
 :host {
   display: flex;
@@ -8,7 +9,6 @@
   justify-content: center;
   height: 100vh;
   background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('/assets/img/background.png') center / cover no-repeat;
-  background-size: cover;
 
   .pokeball {
     width: 6rem;
@@ -58,14 +58,15 @@
   }
 
   .settings-container {
+    @include shadows.soft-shadow();
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    box-shadow: 0 0 10px 0 #0000002E;
     background-color: colors.$color-white;
     border-radius: 12px;
     border: 2px solid colors.$color-application-32;
     padding: 2rem;
+    min-width: 30%;
 
     .title-container {
       display: flex;
@@ -80,6 +81,7 @@
 
       .subtitle {
         color: colors.$color-grey;
+        text-align: center;
         @include fonts.font-14px-semi-bold;
       }
     }
