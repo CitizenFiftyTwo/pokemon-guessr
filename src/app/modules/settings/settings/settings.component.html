@@ -9,7 +9,11 @@
   </div>
   <form [formGroup]="form" class="form">
     <p-floatlabel variant="on">
-      <p-select formControlName="language" inputId="language" [options]="availableLanguages" size="large" fluid/>
+      <p-select formControlName="language"
+                inputId="language"
+                [options]="availableLanguages"
+                size="large" fluid
+                (onChange)="selectLanguage()"/>
       <label for="language">{{ 'SETTINGS.LANGUAGE' | translate }}</label>
     </p-floatlabel>
     <p-floatlabel variant="on">
@@ -17,7 +21,8 @@
                 size="large" fluid/>
       <label for="number-of-rounds">{{ 'SETTINGS.NUMBER_OF_ROUNDS' | translate }}</label>
     </p-floatlabel>
-    <p-button raised (click)="launchGame()" fluid [label]="'SETTINGS.START_GAME' | translate " icon="pi pi-play" size="large"/>
+    <p-button raised (click)="launchGame()" fluid [label]="'SETTINGS.START_GAME' | translate " icon="pi pi-play"
+              size="large"/>
   </form>
 
   <!--<p-floatlabel *ngIf="availableLanguages.length > 0" variant="on">

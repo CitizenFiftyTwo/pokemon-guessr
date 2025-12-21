@@ -13,7 +13,7 @@
   },
   "SETTINGS": {
     "SUBTITLE": "Testez vos connaissances en Pokémon !",
-    "LANGUAGE": "Langue des noms de Pokémon",
+    "LANGUAGE": "Langue",
     "GENERATION": "Génération(s)",
     "NUMBER_OF_ROUNDS": "Nombre de rounds",
     "START_GAME": "Lancer la partie"
