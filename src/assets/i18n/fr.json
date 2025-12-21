@@ -8,7 +8,8 @@
     "NEXT_POKEMON": "Pokémon suivant",
     "CORRECT": "Bien joué !",
     "INCORRECT": "Bien essayé !",
-    "ROUND": "Round"
+    "ROUND": "Round",
+    "LOADING": "Chargement de Pokémon..."
   },
   "SETTINGS": {
     "SUBTITLE": "Testez vos connaissances en Pokémon !",

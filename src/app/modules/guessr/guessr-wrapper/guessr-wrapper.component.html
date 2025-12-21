@@ -1,11 +1,12 @@
 @let numberOfCorrectAnswers = numberOfCorrectAnswers$ | async;
 @let numberOfRounds = numberOfRounds$ | async;
+@let pokemon = pokemon$ | async;
 <div class="score-container">
   <span>{{ 'POKEMON_GUESSR.ROUND' | translate }} : {{ roundNumber }} / {{ numberOfRounds }}</span>
   <p-chip class="chip" [label]="('POKEMON_GUESSR.SCORE' | translate) + ' : ' + numberOfCorrectAnswers"/>
 </div>
-<ng-container *ngIf="pokemon$ | async as pokemon else loader">
-  <div class="pokemon-card">
+<div class="pokemon-card">
+  <ng-container *ngIf="!!pokemon else loader">
     <div class="pokemon-ring">
       <div class="pokemon-ring__circle"></div>
     </div>
@@ -15,13 +16,13 @@
       class="pokemon-image"
     />
     <span *ngIf="displayPokemonName" class="pokemon-name">{{ pokemon.name }}</span>
-  </div>
-  <app-guessr-input [pokemonName]="pokemon.name"
-                    (answerIsCorrect)="handleCorrectAnswer()"
-                    (answerIsIncorrect)="handleIncorrectAnswer()"
-                    (nextPokemonRequested)="getNextPokemon(numberOfRounds || 0)"
-  ></app-guessr-input>
-</ng-container>
+  </ng-container>
+</div>
+<app-guessr-input [pokemonName]="pokemon?.name || ''"
+                  (answerIsCorrect)="handleCorrectAnswer()"
+                  (answerIsIncorrect)="handleIncorrectAnswer()"
+                  (nextPokemonRequested)="getNextPokemon(numberOfRounds || 0)"
+></app-guessr-input>
 <ng-template #loader>
   <app-loader></app-loader>
 </ng-template>
