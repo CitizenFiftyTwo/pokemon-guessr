@@ -5,10 +5,21 @@
     "QUESTION": "What is this Pokemon ?",
     "SUBMIT": "Submit",
     "SCORE": "Score",
-    "NEXT_POKEMON": "Next Pokemon"
+    "NEXT_POKEMON": "Next Pokemon",
+    "CORRECT": "You got it !",
+    "INCORRECT": "Nice try !",
+    "ROUND": "Round",
+    "LOADING": "Loading a Pokemon..."
   },
   "SETTINGS": {
-    "TITLE": "Settings",
-    "LANGUAGE": "Language"
+    "SUBTITLE": "Test your Pokemon knowledge !",
+    "LANGUAGE": "Language",
+    "GENERATION": "Generation(s)",
+    "NUMBER_OF_ROUNDS": "Number of rounds",
+    "START_GAME": "Start game"
+  },
+  "LANGUAGES": {
+    "FR": "French",
+    "EN": "English"
   }
 }
