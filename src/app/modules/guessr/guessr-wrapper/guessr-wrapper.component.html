@@ -1,6 +1,7 @@
+@let numberOfCorrectAnswers = numberOfCorrectAnswers$ | async;
 <div class="score-container">
-  <span>Round 1/5</span>
-  <p-chip class="chip" [label]="('POKEMON_GUESSR.SCORE' | translate) + ' : ' + (numberOfCorrectAnswers$ | async)"/>
+  <span>{{ 'POKEMON_GUESSR.ROUND' | translate }} : {{ roundNumber }} / </span>
+  <p-chip class="chip" [label]="('POKEMON_GUESSR.SCORE' | translate) + ' : ' + numberOfCorrectAnswers"/>
 </div>
 <ng-container *ngIf="pokemon$ | async as pokemon else loader">
   <div class="pokemon-card">
