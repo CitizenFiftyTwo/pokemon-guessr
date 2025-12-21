@@ -1,11 +1,22 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'app-guessr-input',
   templateUrl: './guessr-input.component.html',
   styleUrls: ['./guessr-input.component.scss']
 })
-export class GuessrInputComponent implements OnChanges {
+export class GuessrInputComponent implements OnChanges, AfterViewChecked {
+
+  @ViewChild('pokemonInput') pokemonInput!: ElementRef<HTMLInputElement>;
 
   @Input()
   pokemonName: string = ''
@@ -21,14 +32,23 @@ export class GuessrInputComponent implements OnChanges {
 
   pokemonInputName: string = ''
   isAnswerSubmitted = false
+  autoFocusApplied = false;
 
   ngOnChanges(): void {
     this.isAnswerSubmitted = false;
     this.pokemonInputName = '';
   }
 
+  ngAfterViewChecked() {
+    if (!this.isAnswerSubmitted && this.pokemonInput && !this.autoFocusApplied) {
+      this.autoFocusApplied = true;
+      this.pokemonInput.nativeElement.focus();
+    }
+  }
+
   submit() {
     this.isAnswerSubmitted = true;
+    this.autoFocusApplied = false;
     this.isCorrectAnswer() ? this.answerIsCorrect.emit() : this.answerIsIncorrect.emit()
   }
 

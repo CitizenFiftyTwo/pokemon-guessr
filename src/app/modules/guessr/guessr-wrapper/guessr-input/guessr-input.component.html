@@ -1,7 +1,8 @@
 <form (ngSubmit)="submit()" *ngIf="!isAnswerSubmitted else nextPokemon">
   <p-fluid>
     <p-floatlabel variant="on">
-      <input autofocus pSize="large" pInputText id="pokemon-name" name="pokemonName" [(ngModel)]="pokemonInputName"
+      <input #pokemonInput autofocus pSize="large" pInputText id="pokemon-name" name="pokemonName"
+             [(ngModel)]="pokemonInputName"
              autocomplete="off"/>
       <label for="pokemon-name">{{ 'POKEMON_GUESSR.QUESTION' | translate }}</label>
     </p-floatlabel>
