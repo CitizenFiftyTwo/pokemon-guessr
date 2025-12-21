@@ -7,7 +7,9 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  padding: clamp(16px, 5vw, 48px);
   background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('/assets/img/background.png') center / cover no-repeat;
+  gap: 12px;
 
   .score-container {
     @include shadows.soft-shadow();
@@ -15,14 +17,67 @@
     justify-content: space-between;
     align-items: center;
     background-color: colors.$color-white;
-    width: 50%;
+    width: 100%;
+    max-width: clamp(320px, 60vw, 640px);
     padding: 0.5rem;
     border-radius: 12px;
 
     .chip {
-      background-color: colors.$color-application-64;
+      background-color: colors.$color-application-84;
       color: colors.$color-white;
     }
+  }
+
+  .pokemon-card {
+    @include shadows.soft-shadow;
+    position: relative;
+    width: 100%;
+    max-width: clamp(320px, 60vw, 640px);
+    aspect-ratio: 1 / 1;
+
+    @media (min-width: 768px) {
+      aspect-ratio: 4 / 3;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(16px, 4vw, 32px);
+    background-color: colors.$color-white;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 1);
+    overflow: hidden;
+  }
+
+  .pokemon-ring {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.05;
+  }
+
+  .pokemon-ring__circle {
+    width: 120%;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+    border: clamp(24px, 6vw, 40px) solid rgba(0, 0, 0, 1);
+  }
+
+  .pokemon-image {
+    width: clamp(256px, 30vw, 320px);
+    height: auto;
+
+    object-fit: contain;
+    z-index: 10;
+
+    transition: all 0.7s ease-out;
+
+    filter: brightness(0) contrast(100%);
+    opacity: 0.8;
   }
 
   .content {
@@ -31,9 +86,5 @@
     flex-direction: column;
     align-items: center;
     font-size: 1.5rem;
-  }
-
-  img {
-    max-width: 90%;
   }
 }

@@ -8,6 +8,10 @@ import { GuessrInputComponent } from './guessr-wrapper/guessr-input/guessr-input
 import { FormsModule } from "@angular/forms";
 import { LoaderComponent } from './loader/loader.component';
 import {Chip} from "primeng/chip";
+import {FloatLabel} from "primeng/floatlabel";
+import {InputText} from "primeng/inputtext";
+import {Button} from "primeng/button";
+import {Fluid} from "primeng/fluid";
 
 @NgModule({
   declarations: [
@@ -15,12 +19,16 @@ import {Chip} from "primeng/chip";
     GuessrInputComponent,
     LoaderComponent
   ],
-    imports: [
-        CommonModule,
-        TranslateModule,
-        FormsModule,
-        Chip
-    ],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FormsModule,
+    Chip,
+    FloatLabel,
+    InputText,
+    Button,
+    Fluid
+  ],
   providers: [
     PokemonService,
     RandomNumberService

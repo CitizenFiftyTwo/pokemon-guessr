@@ -3,8 +3,15 @@
   <p-chip class="chip" [label]="('POKEMON_GUESSR.SCORE' | translate) + ' : ' + (numberOfCorrectAnswers$ | async)"/>
 </div>
 <ng-container *ngIf="pokemon$ | async as pokemon else loader">
-  <div class="pokemon-container">
-    <img src="{{pokemon.pictureUrl}}" alt="Pokemon picture">
+  <div class="pokemon-card">
+    <div class="pokemon-ring">
+      <div class="pokemon-ring__circle"></div>
+    </div>
+    <img
+      src="{{ pokemon.pictureUrl }}"
+      alt="Who's that pokemon?"
+      class="pokemon-image"
+    />
   </div>
   <app-guessr-input [pokemonName]="pokemon.name"
                     (answerIsCorrect)="handleCorrectAnswer()"
@@ -12,10 +19,6 @@
                     (nextPokemonRequested)="getNextPokemon()"
   ></app-guessr-input>
 </ng-container>
-<div *ngIf="(numberOfQuestionsAsked$ | async) || 0 > 0">
-  {{ 'POKEMON_GUESSR.SCORE' | translate }} : {{ numberOfCorrectAnswers$ | async }}
-  / {{ numberOfQuestionsAsked$ | async }}
-</div>
 <ng-template #loader>
   <app-loader></app-loader>
 </ng-template>

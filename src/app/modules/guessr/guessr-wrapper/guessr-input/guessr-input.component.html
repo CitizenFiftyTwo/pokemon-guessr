@@ -1,10 +1,18 @@
 <form (ngSubmit)="submit()" *ngIf="!isAnswerSubmitted else correctAnswer">
-  <input [autocomplete]="false" autofocus type="text" name="name" [(ngModel)]="pokemonInputName">
-  <button type="submit">{{'POKEMON_GUESSR.SUBMIT' | translate}}</button>
+  <p-fluid>
+    <p-floatlabel variant="on">
+      <input autofocus pSize="large" pInputText id="pokemon-name" [(ngModel)]="pokemonInputName" autocomplete="off"/>
+      <label for="pokemon-name">{{ 'POKEMON_GUESSR.QUESTION' | translate }}</label>
+    </p-floatlabel>
+  </p-fluid>
+  <p-button raised type="submit" [label]="'POKEMON_GUESSR.SUBMIT' | translate " size="large"/>
 </form>
 <ng-template #correctAnswer>
-  <div class="correct-answer">{{pokemonName}}</div>
-  <form (ngSubmit)="getNextPokemon()">
-    <button autofocus type="submit">{{'POKEMON_GUESSR.NEXT_POKEMON' | translate}}</button>
-  </form>
+  <div class="correct-answer">
+    <span>{{ pokemonName }}</span>
+    <form (ngSubmit)="getNextPokemon()">
+      <p-button raised autofocus size="large" type="submit">{{ 'POKEMON_GUESSR.NEXT_POKEMON' | translate }}</p-button>
+    </form>
+  </div>
+
 </ng-template>
