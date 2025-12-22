@@ -3,6 +3,7 @@
     <p-floatlabel variant="on">
       <input #pokemonInput autofocus [pSize]="isCompactView ? 'small' : 'large'" pInputText id="pokemon-name"
              name="pokemonName"
+             style="font-size: 16px"
              [(ngModel)]="pokemonInputName"
              autocomplete="off"/>
       <label for="pokemon-name">{{ 'POKEMON_GUESSR.QUESTION' | translate }}</label>
