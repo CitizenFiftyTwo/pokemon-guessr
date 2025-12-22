@@ -9,7 +9,7 @@
       <label for="pokemon-name">{{ 'POKEMON_GUESSR.QUESTION' | translate }}</label>
     </p-floatlabel>
   </p-fluid>
-  <p-button raised type="submit" [label]="'POKEMON_GUESSR.SUBMIT' | translate "
+  <p-button raised type="submit" [disabled]="!pokemonName" [label]="'POKEMON_GUESSR.SUBMIT' | translate "
             [size]="isCompactView ? 'small' : 'large'"/>
 </form>
 <ng-template #nextPokemon>
