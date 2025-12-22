@@ -7,7 +7,17 @@
     <p-chip class="chip" [label]="('POKEMON_GUESSR.SCORE' | translate) + ' : ' + numberOfCorrectAnswers"/>
   </div>
   <div class="pokemon-card">
-    <app-loader [isCompactView]="isCompactView"></app-loader>
+    <ng-container *ngIf="!!pokemon else loader">
+      <div class="pokemon-ring">
+        <div class="pokemon-ring__circle"></div>
+      </div>
+      <img
+        src="{{ pokemon.pictureUrl }}"
+        alt="Who's that pokemon?"
+        class="pokemon-image"
+      />
+      <span *ngIf="displayPokemonName" class="pokemon-name">{{ pokemon.name }}</span>
+    </ng-container>
   </div>
   <app-guessr-input
     [isCompactView]="isCompactView"
@@ -17,9 +27,8 @@
     (nextPokemonRequested)="getNextPokemon(numberOfRounds || 0)"
   ></app-guessr-input>
 </ng-container>
-
 <ng-template #loader>
-  <app-loader></app-loader>
+  <app-loader [isCompactView]="isCompactView"></app-loader>
 </ng-template>
 <ng-template #result>
   <app-result [score]="numberOfCorrectAnswers || 0" [numberOfRounds]="numberOfRounds || 0"></app-result>

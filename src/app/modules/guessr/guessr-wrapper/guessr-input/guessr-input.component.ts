@@ -3,10 +3,8 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   Input,
   OnChanges,
-  OnInit,
   Output,
   ViewChild
 } from '@angular/core';
