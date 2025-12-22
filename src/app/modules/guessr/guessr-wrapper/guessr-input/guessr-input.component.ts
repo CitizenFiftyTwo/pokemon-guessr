@@ -47,7 +47,7 @@ export class GuessrInputComponent implements OnInit, OnChanges, AfterViewChecked
   }
 
   ngAfterViewChecked() {
-    if (!this.isAnswerSubmitted && this.pokemonInput && !this.autoFocusApplied) {
+    if (!this.isAnswerSubmitted && this.pokemonInput && !this.autoFocusApplied && !this.isCompactView) {
       this.autoFocusApplied = true;
       this.pokemonInput.nativeElement.focus();
     }
