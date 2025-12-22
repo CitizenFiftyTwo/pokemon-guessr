@@ -1,5 +1,5 @@
-import { AppState } from "../../app.ngrx";
-import { selectLanguage, SettingsState } from "./settings.state";
+import {AppState} from "../../app.ngrx";
+import {selectLanguage, SettingsState} from "./settings.state";
 
 describe('SettingsState', () => {
   let appState: AppState;
@@ -8,7 +8,8 @@ describe('SettingsState', () => {
   beforeEach(() => {
     initialState = {
       language: 'fr',
-      numberOfRounds: 0
+      numberOfRounds: 0,
+      isShadowMode: false
     };
 
     appState = {
