@@ -80,8 +80,8 @@
     animation: appear 0.5s ease-out forwards;
 
     &.shadow {
-      filter: brightness(0) contrast(100%);
-      opacity: 0.8;
+      filter: brightness(0) contrast(100%) !important;
+      opacity: 0.8 !important;
     }
   }
 
