@@ -16,12 +16,15 @@ import {
   templateUrl: './guessr-input.component.html',
   styleUrls: ['./guessr-input.component.scss']
 })
-export class GuessrInputComponent implements OnInit, OnChanges, AfterViewChecked {
+export class GuessrInputComponent implements OnChanges, AfterViewChecked {
 
   @ViewChild('pokemonInput') pokemonInput!: ElementRef<HTMLInputElement>;
 
   @Input()
   pokemonName: string = '';
+
+  @Input()
+  isCompactView = false;
 
   @Output()
   answerIsCorrect = new EventEmitter<void>();
@@ -35,11 +38,6 @@ export class GuessrInputComponent implements OnInit, OnChanges, AfterViewChecked
   pokemonInputName: string = '';
   isAnswerSubmitted = false;
   autoFocusApplied = false;
-  isCompactView = false;
-
-  ngOnInit(): void {
-    this.updateViewportMode();
-  }
 
   ngOnChanges(): void {
     this.isAnswerSubmitted = false;
@@ -51,15 +49,6 @@ export class GuessrInputComponent implements OnInit, OnChanges, AfterViewChecked
       this.autoFocusApplied = true;
       this.pokemonInput.nativeElement.focus();
     }
-  }
-
-  @HostListener('window:resize')
-  onResize() {
-    this.updateViewportMode();
-  }
-
-  private updateViewportMode() {
-    this.isCompactView = window.innerWidth < 1250;
   }
 
   submit() {

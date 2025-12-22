@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { CorrectAnswerAction, IncorrectAnswerAction, LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
@@ -20,6 +20,7 @@ export class GuessrWrapperComponent implements OnInit {
   displayPokemonName = false;
   displayResult = false;
   roundNumber = 1;
+  isCompactView = false;
 
   constructor(private store: Store) {
   }
@@ -30,6 +31,16 @@ export class GuessrWrapperComponent implements OnInit {
     this.numberOfCorrectAnswers$ = this.store.select(selectNumberOfCorrectAnswers);
     this.numberOfRounds$ = this.store.select(selectNumberOfRounds);
     this.store.dispatch(LoadPokemonAction());
+    this.updateViewportMode();
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.updateViewportMode();
+  }
+
+  private updateViewportMode() {
+    this.isCompactView = window.innerWidth < 1250;
   }
 
   handleCorrectAnswer() {
