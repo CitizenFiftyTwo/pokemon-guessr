@@ -9,7 +9,8 @@ const PokemonActionTypes = {
   LOAD_POKEMON_SUCCESS: '[Pokemon] Load pokemon success',
   LOAD_POKEMON_FAILURE: '[Pokemon] Load pokemon failure',
   CORRECT_ANSWER: '[Pokemon] A correct answer',
-  INCORRECT_ANSWER: '[Pokemon] An incorrect answer'
+  INCORRECT_ANSWER: '[Pokemon] An incorrect answer',
+  START_GAME: '[Pokemon] Start game',
 };
 
 
@@ -25,3 +26,4 @@ export const LoadPokemonFailureAction = createAction(PokemonActionTypes.LOAD_POK
 
 export const CorrectAnswerAction = createAction(PokemonActionTypes.CORRECT_ANSWER);
 export const IncorrectAnswerAction = createAction(PokemonActionTypes.INCORRECT_ANSWER);
+export const StartGameAction = createAction(PokemonActionTypes.START_GAME);

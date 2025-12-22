@@ -6,6 +6,7 @@ import { SetLanguageAction, SetSettingsAction } from "../../../stores/settings/s
 import { SelectOption } from "../../../typings";
 import { TranslateService } from "@ngx-translate/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {StartGameAction} from "../../../stores/pokemon/pokemon.action";
 
 @Component({
   selector: 'app-settings',
@@ -40,6 +41,7 @@ export class SettingsComponent implements OnInit {
       language: this.selectedLanguage.value,
       numberOfRounds: this.numberOfRounds.value
     }));
+    this.store.dispatch(StartGameAction());
     this.navigationService.toGame();
   }
 
