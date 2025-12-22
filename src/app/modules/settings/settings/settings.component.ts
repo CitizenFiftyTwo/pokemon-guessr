@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { LanguageService } from "../../../services/language.service";
-import { NavigationService } from "../../../services/navigation.service";
-import { Store } from "@ngrx/store";
-import { SetLanguageAction, SetSettingsAction } from "../../../stores/settings/settings.action";
-import { SelectOption } from "../../../typings";
-import { TranslateService } from "@ngx-translate/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {LanguageService} from "../../../services/language.service";
+import {NavigationService} from "../../../services/navigation.service";
+import {Store} from "@ngrx/store";
+import {SetLanguageAction, SetSettingsAction} from "../../../stores/settings/settings.action";
+import {SelectOption} from "../../../typings";
+import {TranslateService} from "@ngx-translate/core";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {StartGameAction} from "../../../stores/pokemon/pokemon.action";
 
 @Component({
@@ -39,7 +39,8 @@ export class SettingsComponent implements OnInit {
   launchGame() {
     this.store.dispatch(SetSettingsAction({
       language: this.selectedLanguage.value,
-      numberOfRounds: this.numberOfRounds.value
+      numberOfRounds: this.numberOfRounds.value,
+      isShadowMode: this.isShadowMode.value
     }));
     this.store.dispatch(StartGameAction());
     this.navigationService.toGame();
@@ -62,6 +63,7 @@ export class SettingsComponent implements OnInit {
     return this.formBuilder.group({
       language: ['fr', Validators.required],
       numberOfRounds: [10, Validators.required],
+      isShadowMode: [false, Validators.required],
     });
   }
 
@@ -71,5 +73,9 @@ export class SettingsComponent implements OnInit {
 
   get numberOfRounds() {
     return this.form.get('numberOfRounds') as FormControl;
+  }
+
+  get isShadowMode() {
+    return this.form.get('isShadowMode') as FormControl;
   }
 }

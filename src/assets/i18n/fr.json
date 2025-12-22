@@ -16,6 +16,7 @@
     "LANGUAGE": "Langue",
     "GENERATION": "Génération(s)",
     "NUMBER_OF_ROUNDS": "Nombre de rounds",
+    "SHADOW_MODE": "Mode ombre",
     "START_GAME": "Lancer la partie"
   },
   "RESULT": {

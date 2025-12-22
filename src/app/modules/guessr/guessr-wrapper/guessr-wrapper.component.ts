@@ -1,10 +1,10 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import { Store } from "@ngrx/store";
-import { Observable, of } from "rxjs";
-import { CorrectAnswerAction, IncorrectAnswerAction, LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
-import { selectNumberOfCorrectAnswers, selectNumberOfQuestionsAsked, selectPokemon } from "../../../stores/pokemon";
-import { Pokemon } from "../../../typings";
-import { selectNumberOfRounds } from "../../../stores/settings";
+import {Store} from "@ngrx/store";
+import {Observable, of} from "rxjs";
+import {CorrectAnswerAction, IncorrectAnswerAction, LoadPokemonAction} from "../../../stores/pokemon/pokemon.action";
+import {selectNumberOfCorrectAnswers, selectNumberOfQuestionsAsked, selectPokemon} from "../../../stores/pokemon";
+import {Pokemon} from "../../../typings";
+import {selectIsShadowMode, selectNumberOfRounds} from "../../../stores/settings";
 
 @Component({
   selector: 'app-guessr-wrapper',
@@ -17,6 +17,7 @@ export class GuessrWrapperComponent implements OnInit {
   numberOfCorrectAnswers$: Observable<number> = of(0);
   numberOfQuestionsAsked$: Observable<number> = of(0);
   numberOfRounds$: Observable<number> = of(0);
+  isShadowMode$: Observable<boolean> = of(false);
   displayPokemonName = false;
   displayResult = false;
   roundNumber = 1;
@@ -30,6 +31,7 @@ export class GuessrWrapperComponent implements OnInit {
     this.numberOfQuestionsAsked$ = this.store.select(selectNumberOfQuestionsAsked);
     this.numberOfCorrectAnswers$ = this.store.select(selectNumberOfCorrectAnswers);
     this.numberOfRounds$ = this.store.select(selectNumberOfRounds);
+    this.isShadowMode$ = this.store.select(selectIsShadowMode);
     this.store.dispatch(LoadPokemonAction());
     this.updateViewportMode();
   }

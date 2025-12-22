@@ -12,6 +12,7 @@
         <div class="pokemon-ring__circle"></div>
       </div>
       <img
+        [ngClass]="{shadow: isShadowMode$ | async}"
         src="{{ pokemon.pictureUrl }}"
         alt="Who's that pokemon?"
         class="pokemon-image"

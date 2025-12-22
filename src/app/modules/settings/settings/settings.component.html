@@ -21,6 +21,10 @@
                 size="large" fluid/>
       <label for="number-of-rounds">{{ 'SETTINGS.NUMBER_OF_ROUNDS' | translate }}</label>
     </p-floatlabel>
+    <div class="shadow-mode-container">
+      <label for="shadow-mode">{{ 'SETTINGS.SHADOW_MODE' | translate }}</label>
+      <p-toggleswitch inputId="shadow-mode" formControlName="isShadowMode"/>
+    </div>
     <p-button raised (click)="launchGame()" fluid [label]="'SETTINGS.START_GAME' | translate " icon="pi pi-play"
               size="large"/>
   </form>

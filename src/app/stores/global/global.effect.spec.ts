@@ -1,11 +1,11 @@
-import { TestBed } from "@angular/core/testing";
-import { Observable } from "rxjs";
-import { provideMockActions } from "@ngrx/effects/testing";
-import { cold, hot } from "jasmine-marbles";
-import { LanguageService } from "../../services/language.service";
-import { GlobalEffects } from "./global.effect";
-import { SetSettingsAction } from "../settings/settings.action";
-import { ROOT_EFFECTS_INIT } from "@ngrx/effects";
+import {TestBed} from "@angular/core/testing";
+import {Observable} from "rxjs";
+import {provideMockActions} from "@ngrx/effects/testing";
+import {cold, hot} from "jasmine-marbles";
+import {LanguageService} from "../../services/language.service";
+import {GlobalEffects} from "./global.effect";
+import {SetSettingsAction} from "../settings/settings.action";
+import {ROOT_EFFECTS_INIT} from "@ngrx/effects";
 
 describe('GlobalEffects', () => {
   let languageServiceSpy: jasmine.SpyObj<LanguageService>;
@@ -32,7 +32,7 @@ describe('GlobalEffects', () => {
   describe('Init Language', () => {
     it('should dispatch success with number of pokemons', () => {
       languageServiceSpy.getLanguage.and.returnValue('fr');
-      const expectedAction = SetSettingsAction({language: 'fr', numberOfRounds: 10});
+      const expectedAction = SetSettingsAction({language: 'fr', numberOfRounds: 10, isShadowMode: false});
 
       actions$ = hot('a', {a: {type: ROOT_EFFECTS_INIT}});
 
