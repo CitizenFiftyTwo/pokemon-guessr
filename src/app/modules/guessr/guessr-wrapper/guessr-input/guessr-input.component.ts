@@ -3,8 +3,10 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
+  OnInit,
   Output,
   ViewChild
 } from '@angular/core';
@@ -14,12 +16,12 @@ import {
   templateUrl: './guessr-input.component.html',
   styleUrls: ['./guessr-input.component.scss']
 })
-export class GuessrInputComponent implements OnChanges, AfterViewChecked {
+export class GuessrInputComponent implements OnInit, OnChanges, AfterViewChecked {
 
   @ViewChild('pokemonInput') pokemonInput!: ElementRef<HTMLInputElement>;
 
   @Input()
-  pokemonName: string = ''
+  pokemonName: string = '';
 
   @Output()
   answerIsCorrect = new EventEmitter<void>();
@@ -30,9 +32,14 @@ export class GuessrInputComponent implements OnChanges, AfterViewChecked {
   @Output()
   nextPokemonRequested = new EventEmitter<void>();
 
-  pokemonInputName: string = ''
-  isAnswerSubmitted = false
+  pokemonInputName: string = '';
+  isAnswerSubmitted = false;
   autoFocusApplied = false;
+  isCompactView = false;
+
+  ngOnInit(): void {
+    this.updateViewportMode();
+  }
 
   ngOnChanges(): void {
     this.isAnswerSubmitted = false;
@@ -46,18 +53,27 @@ export class GuessrInputComponent implements OnChanges, AfterViewChecked {
     }
   }
 
+  @HostListener('window:resize')
+  onResize() {
+    this.updateViewportMode();
+  }
+
+  private updateViewportMode() {
+    this.isCompactView = window.innerWidth < 1250;
+  }
+
   submit() {
     this.isAnswerSubmitted = true;
     this.autoFocusApplied = false;
-    this.isCorrectAnswer() ? this.answerIsCorrect.emit() : this.answerIsIncorrect.emit()
+    this.isCorrectAnswer() ? this.answerIsCorrect.emit() : this.answerIsIncorrect.emit();
   }
 
   getNextPokemon() {
-    this.nextPokemonRequested.emit()
+    this.nextPokemonRequested.emit();
   }
 
   isCorrectAnswer(): boolean {
-    return this.normalize(this.pokemonName) === this.normalize(this.pokemonInputName)
+    return this.normalize(this.pokemonName) === this.normalize(this.pokemonInputName);
   }
 
   private normalize(name: string) {

@@ -29,7 +29,7 @@
       gap: 12px;
 
       .pi {
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
 
       &.incorrect {
@@ -38,6 +38,10 @@
 
       &.correct {
         color: colors.$color-green;
+      }
+
+      &.compact {
+        @include fonts.font-16px-semi-bold;
       }
     }
   }
