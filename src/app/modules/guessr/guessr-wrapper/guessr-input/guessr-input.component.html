@@ -14,13 +14,9 @@
 </form>
 <ng-template #nextPokemon>
   <div class="next-pokemon-container">
-    <div *ngIf="isCorrectAnswer()" class="answer correct" [ngClass]="{compact: isCompactView}">
-      <i class="pi pi-check-circle correct"></i>
-      <span class="correct">{{ 'POKEMON_GUESSR.CORRECT' | translate }}</span>
-    </div>
-    <div *ngIf="!isCorrectAnswer()" class="answer incorrect" [ngClass]="{compact: isCompactView}">
-      <i class="pi pi-times-circle incorrect"></i>
-      <span class="incorrect">{{ 'POKEMON_GUESSR.INCORRECT' | translate }}</span>
+    <div [class]="'answer ' + answerResult" [ngClass]="{compact: isCompactView}">
+      <i [class]="'pi pi-check-circle ' + answerResult"></i>
+      <span class="correct">{{ 'POKEMON_GUESSR.' + this.toLabelCode(answerResult) | translate }}</span>
     </div>
     <form (ngSubmit)="getNextPokemon()">
       <p-button raised autofocus [size]="isCompactView ? 'small' : 'large'"

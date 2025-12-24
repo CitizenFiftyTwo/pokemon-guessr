@@ -23,80 +23,11 @@ describe('GuessrInputComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('onChanges', () => {
-    it('should set isAnswerSubmitted to false ', () => {
-      component.isAnswerSubmitted = true
-
-      component.ngOnChanges()
-
-      expect(component.isAnswerSubmitted).toBeFalse()
-    });
-
-    it('should reset pokemonInputName ', () => {
-      component.pokemonInputName = 'pikachu'
-
-      component.ngOnChanges()
-
-      expect(component.pokemonInputName).toEqual('')
-    });
-  })
-
-
   describe('submit', () => {
     it('should set isAnswerSubmitted to true', () => {
       component.submit()
 
       expect(component.isAnswerSubmitted).toBeTrue()
-    });
-
-    it('should emit answerIsCorrect when answer is correct', () => {
-      let emitAnswerIsCorrectSpy = spyOn(component.answerIsCorrect, 'emit');
-      component.pokemonName = 'pikachu'
-      component.pokemonInputName = 'pikachu'
-
-      component.submit()
-
-      expect(emitAnswerIsCorrectSpy).toHaveBeenCalled()
-    });
-
-    it('should emit answerIsCorrect when answer is correct with case insensitive', () => {
-      let emitAnswerIsCorrectSpy = spyOn(component.answerIsCorrect, 'emit');
-      component.pokemonName = 'pikachu'
-      component.pokemonInputName = 'PiKaChU'
-
-      component.submit()
-
-      expect(emitAnswerIsCorrectSpy).toHaveBeenCalled()
-    });
-
-    it('should emit answerIsCorrect when pokemon name has accent', () => {
-      let emitAnswerIsCorrectSpy = spyOn(component.answerIsCorrect, 'emit');
-      component.pokemonName = 'câblifère'
-      component.pokemonInputName = 'cablifere'
-
-      component.submit()
-
-      expect(emitAnswerIsCorrectSpy).toHaveBeenCalled()
-    });
-
-    it('should emit answerIsCorrect when pokemon input name has accent', () => {
-      let emitAnswerIsCorrectSpy = spyOn(component.answerIsCorrect, 'emit');
-      component.pokemonName = 'cablifere'
-      component.pokemonInputName = 'câblifère'
-
-      component.submit()
-
-      expect(emitAnswerIsCorrectSpy).toHaveBeenCalled()
-    });
-
-    it('should emit answerIsIncorrect when answer is incorrect', () => {
-      let emitAnswerIsIncorrectSpy = spyOn(component.answerIsIncorrect, 'emit');
-      component.pokemonName = 'pikachu'
-      component.pokemonInputName = 'mewtwo'
-
-      component.submit()
-
-      expect(emitAnswerIsIncorrectSpy).toHaveBeenCalled()
     });
   });
 

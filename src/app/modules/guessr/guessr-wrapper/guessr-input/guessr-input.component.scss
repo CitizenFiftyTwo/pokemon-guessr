@@ -36,6 +36,10 @@
         color: colors.$color-application;
       }
 
+      &.almost-correct {
+        color: colors.$color-orange;
+      }
+
       &.correct {
         color: colors.$color-green;
       }

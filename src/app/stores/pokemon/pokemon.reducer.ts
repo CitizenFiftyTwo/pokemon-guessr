@@ -1,12 +1,12 @@
 import { PokemonInitialState, PokemonState } from "./pokemon.state";
 import { createReducer, on } from "@ngrx/store";
 import {
-  CorrectAnswerAction,
-  IncorrectAnswerAction,
   LoadNumberOfPokemonsFailureAction,
   LoadNumberOfPokemonsSuccessAction,
   LoadPokemonAction,
-  LoadPokemonSuccessAction, StartGameAction
+  LoadPokemonSuccessAction,
+  StartGameAction,
+  SubmitScoreAction
 } from "./pokemon.action";
 import { Pokemon } from "../../typings";
 
@@ -23,23 +23,16 @@ const onLoadPokemonSuccess = (state: PokemonState, {pokemon}: { pokemon: Pokemon
   pokemon
 });
 
-const onCorrectAnswer = (state: PokemonState) => (
-  {
-    ...state,
-    numberOfCorrectAnswers: state.numberOfCorrectAnswers + 1,
-    numberOfQuestionsAsked: state.numberOfQuestionsAsked + 1
-  });
-
-const onIncorrectAnswer = (state: PokemonState) => (
-  {
-    ...state,
-    numberOfQuestionsAsked: state.numberOfQuestionsAsked + 1
-  });
+const onSubmitScore = (state: PokemonState, {score}: { score: number }) => ({
+  ...state,
+  score: state.score + score,
+  numberOfQuestionsAsked: state.numberOfQuestionsAsked + 1
+});
 
 const onStartGameAction = (state: PokemonState) => (
   {
     ...state,
-    numberOfCorrectAnswers: 0,
+    score: 0,
     numberOfQuestionsAsked: 0
   });
 
@@ -50,7 +43,6 @@ export const pokemonReducer = createReducer(
   on(LoadNumberOfPokemonsFailureAction, onLoadNumberOfPokemonsFailure),
   on(LoadPokemonAction, onLoadPokemon),
   on(LoadPokemonSuccessAction, onLoadPokemonSuccess),
-  on(CorrectAnswerAction, onCorrectAnswer),
-  on(IncorrectAnswerAction, onIncorrectAnswer),
+  on(SubmitScoreAction, onSubmitScore),
   on(StartGameAction, onStartGameAction)
 );
