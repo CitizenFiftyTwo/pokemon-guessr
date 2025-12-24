@@ -1,10 +1,10 @@
-@let numberOfCorrectAnswers = numberOfCorrectAnswers$ | async;
+@let score = score$ | async;
 @let numberOfRounds = numberOfRounds$ | async;
 @let pokemon = pokemon$ | async;
 <ng-container *ngIf="!displayResult else result">
   <div class="score-container">
     <span class="score">{{ 'POKEMON_GUESSR.ROUND' | translate }} : {{ roundNumber }} / {{ numberOfRounds }}</span>
-    <p-chip class="chip" [label]="('POKEMON_GUESSR.SCORE' | translate) + ' : ' + numberOfCorrectAnswers"/>
+    <p-chip class="chip" [label]="('POKEMON_GUESSR.SCORE' | translate) + ' : ' + score"/>
   </div>
   <div class="pokemon-card">
     <ng-container *ngIf="!!pokemon else loader">
@@ -23,14 +23,13 @@
   <app-guessr-input
     [isCompactView]="isCompactView"
     [pokemonName]="pokemon?.name || ''"
-    (answerIsCorrect)="handleCorrectAnswer()"
-    (answerIsIncorrect)="handleIncorrectAnswer()"
     (nextPokemonRequested)="getNextPokemon(numberOfRounds || 0)"
+    (resultScoreSubmitted)="handleResultScore($event)"
   ></app-guessr-input>
 </ng-container>
 <ng-template #loader>
   <app-loader [isCompactView]="isCompactView"></app-loader>
 </ng-template>
 <ng-template #result>
-  <app-result [score]="numberOfCorrectAnswers || 0" [numberOfRounds]="numberOfRounds || 0"></app-result>
+  <app-result [score]="score || 0" [numberOfRounds]="numberOfRounds || 0"></app-result>
 </ng-template>

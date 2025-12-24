@@ -6,6 +6,7 @@ import {
   Input,
   OnChanges,
   Output,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
 
@@ -25,7 +26,7 @@ export class GuessrInputComponent implements OnChanges, AfterViewChecked {
   isCompactView = false;
 
   @Output()
-  answerResultSubmitted = new EventEmitter<AnswerResult>();
+  resultScoreSubmitted = new EventEmitter<number>();
 
   @Output()
   nextPokemonRequested = new EventEmitter<void>();
@@ -35,9 +36,11 @@ export class GuessrInputComponent implements OnChanges, AfterViewChecked {
   autoFocusApplied = false;
   answerResult: AnswerResult | undefined = undefined;
 
-  ngOnChanges(): void {
-    this.isAnswerSubmitted = false;
-    this.pokemonInputName = '';
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['pokemonName']) {
+      this.isAnswerSubmitted = false;
+      this.pokemonInputName = '';
+    }
   }
 
   ngAfterViewChecked() {
@@ -48,9 +51,16 @@ export class GuessrInputComponent implements OnChanges, AfterViewChecked {
   }
 
   submit() {
+    this.getAnswerResult();
     this.isAnswerSubmitted = true;
     this.autoFocusApplied = false;
-    this.answerResultSubmitted.emit(this.answerResult);
+    let resultScore = 0;
+    if (this.answerResult === 'correct') {
+      resultScore += 1;
+    } else if (this.answerResult === 'almost-correct') {
+      resultScore += 0.5;
+    }
+    this.resultScoreSubmitted.emit(resultScore);
   }
 
   getNextPokemon() {
@@ -63,11 +73,11 @@ export class GuessrInputComponent implements OnChanges, AfterViewChecked {
     const distance = this.levenshtein(input, target);
 
     if (distance === 0) {
-      this.answerResult = AnswerResult.correct
-    } else if (distance < 1) {
-      this.answerResult = AnswerResult.almostCorrect
+      this.answerResult = AnswerResult.correct;
+    } else if (distance <= 2) {
+      this.answerResult = AnswerResult.almostCorrect;
     } else {
-      this.answerResult = AnswerResult.incorrect
+      this.answerResult = AnswerResult.incorrect;
     }
   }
 
@@ -98,6 +108,13 @@ export class GuessrInputComponent implements OnChanges, AfterViewChecked {
     }
 
     return matrix[b.length][a.length];
+  }
+
+  protected toLabelCode(answerResult: AnswerResult | undefined) {
+    if (!answerResult) {
+      return "";
+    }
+    return answerResult.replace("-", "_").toUpperCase();
   }
 }
 

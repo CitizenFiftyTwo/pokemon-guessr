@@ -1,10 +1,10 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
-import {Observable, of} from "rxjs";
-import {CorrectAnswerAction, IncorrectAnswerAction, LoadPokemonAction} from "../../../stores/pokemon/pokemon.action";
-import {selectNumberOfCorrectAnswers, selectNumberOfQuestionsAsked, selectPokemon} from "../../../stores/pokemon";
-import {Pokemon} from "../../../typings";
-import {selectIsShadowMode, selectNumberOfRounds} from "../../../stores/settings";
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Store } from "@ngrx/store";
+import { Observable, of } from "rxjs";
+import { LoadPokemonAction, SubmitScoreAction } from "../../../stores/pokemon/pokemon.action";
+import { selectNumberOfQuestionsAsked, selectPokemon, selectScore } from "../../../stores/pokemon";
+import { Pokemon } from "../../../typings";
+import { selectIsShadowMode, selectNumberOfRounds } from "../../../stores/settings";
 
 @Component({
   selector: 'app-guessr-wrapper',
@@ -14,7 +14,7 @@ import {selectIsShadowMode, selectNumberOfRounds} from "../../../stores/settings
 export class GuessrWrapperComponent implements OnInit {
 
   pokemon$: Observable<Pokemon | undefined> = of(undefined);
-  numberOfCorrectAnswers$: Observable<number> = of(0);
+  score$: Observable<number> = of(0);
   numberOfQuestionsAsked$: Observable<number> = of(0);
   numberOfRounds$: Observable<number> = of(0);
   isShadowMode$: Observable<boolean> = of(false);
@@ -29,7 +29,7 @@ export class GuessrWrapperComponent implements OnInit {
   ngOnInit(): void {
     this.pokemon$ = this.store.select(selectPokemon);
     this.numberOfQuestionsAsked$ = this.store.select(selectNumberOfQuestionsAsked);
-    this.numberOfCorrectAnswers$ = this.store.select(selectNumberOfCorrectAnswers);
+    this.score$ = this.store.select(selectScore);
     this.numberOfRounds$ = this.store.select(selectNumberOfRounds);
     this.isShadowMode$ = this.store.select(selectIsShadowMode);
     this.store.dispatch(LoadPokemonAction());
@@ -45,14 +45,10 @@ export class GuessrWrapperComponent implements OnInit {
     this.isCompactView = window.innerWidth < 1250;
   }
 
-  handleCorrectAnswer() {
+  protected handleResultScore(score: number) {
     this.displayPokemonName = true;
-    this.store.dispatch(CorrectAnswerAction());
-  }
+    this.store.dispatch(SubmitScoreAction({score}));
 
-  handleIncorrectAnswer() {
-    this.displayPokemonName = true;
-    this.store.dispatch(IncorrectAnswerAction());
   }
 
   getNextPokemon(numberOfRounds: number) {

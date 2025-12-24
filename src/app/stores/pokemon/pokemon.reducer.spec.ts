@@ -2,12 +2,11 @@ import { PokemonInitialState, PokemonState } from "./pokemon.state";
 import { pokemonReducer } from "./pokemon.reducer";
 import { INIT } from "@ngrx/store";
 import {
-  CorrectAnswerAction,
-  IncorrectAnswerAction,
   LoadNumberOfPokemonsFailureAction,
   LoadNumberOfPokemonsSuccessAction,
   LoadPokemonAction,
-  LoadPokemonSuccessAction
+  LoadPokemonSuccessAction,
+  SubmitScoreAction
 } from "./pokemon.action";
 
 describe('PokemonReducer', () => {
@@ -75,20 +74,20 @@ describe('PokemonReducer', () => {
     });
   });
 
-  it('CorrectAnswerAction should increment numberOfCorrectAnswers and numberOfQuestionsAsked', () => {
-    const action = CorrectAnswerAction();
+  it('Submit score 1 should increment score and numberOfQuestionsAsked', () => {
+    const action = SubmitScoreAction({score: 1});
 
     const state = pokemonReducer(initialState, action);
 
     expect(state).toEqual({
       ...initialState,
-      numberOfCorrectAnswers: 1,
+      score: 1,
       numberOfQuestionsAsked: 1
     });
   })
 
-  it('IncorrectAnswerAction should increment numberOfQuestionsAsked', () => {
-    const action = IncorrectAnswerAction();
+  it('Submit score 0 should increment numberOfQuestionsAsked', () => {
+    const action = SubmitScoreAction({score: 0});
 
     const state = pokemonReducer(initialState, action);
 

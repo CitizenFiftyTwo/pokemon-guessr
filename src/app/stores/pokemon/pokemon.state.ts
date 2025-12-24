@@ -5,7 +5,7 @@ import { Pokemon } from "../../typings";
 export interface PokemonState {
   numberOfPokemons: number,
   pokemon: Pokemon | undefined,
-  numberOfCorrectAnswers: number,
+  score: number,
   numberOfQuestionsAsked: number
 
 }
@@ -13,7 +13,7 @@ export interface PokemonState {
 export const PokemonInitialState: PokemonState = {
   numberOfPokemons: 0,
   pokemon: undefined,
-  numberOfCorrectAnswers: 0,
+  score: 0,
   numberOfQuestionsAsked: 0
 };
 
@@ -25,8 +25,8 @@ export const selectNumberOfPokemons = createSelector(pokemonState, (state: Pokem
 export const selectPokemon = createSelector(pokemonState, (state: PokemonState) =>
   state.pokemon);
 
-export const selectNumberOfCorrectAnswers = createSelector(pokemonState, (state: PokemonState) =>
-  state.numberOfCorrectAnswers);
+export const selectScore = createSelector(pokemonState, (state: PokemonState) =>
+  state.score);
 
 export const selectNumberOfQuestionsAsked = createSelector(pokemonState, (state: PokemonState) =>
   state.numberOfQuestionsAsked);

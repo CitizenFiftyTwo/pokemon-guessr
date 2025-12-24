@@ -4,14 +4,14 @@ import { GuessrWrapperComponent } from './guessr-wrapper.component';
 import { TranslateModule } from "@ngx-translate/core";
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
 import {
-  selectNumberOfCorrectAnswers,
   selectNumberOfPokemons,
   selectNumberOfQuestionsAsked,
-  selectPokemon
+  selectPokemon,
+  selectScore
 } from "../../../stores/pokemon";
-import { CorrectAnswerAction, IncorrectAnswerAction, LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
 import { GuessrModule } from "../guessr.module";
 import { NavigationService } from "../../../services/navigation.service";
+import { LoadPokemonAction } from "../../../stores/pokemon/pokemon.action";
 
 describe('GuessrWrapperComponent', () => {
   let component: GuessrWrapperComponent;
@@ -46,7 +46,7 @@ describe('GuessrWrapperComponent', () => {
               }
             },
             {
-              selector: selectNumberOfCorrectAnswers,
+              selector: selectScore,
               value: 10
             },
             {
@@ -91,7 +91,7 @@ describe('GuessrWrapperComponent', () => {
     it('should select number of correct answers', () => {
       component.ngOnInit();
 
-      component.numberOfCorrectAnswers$.subscribe(numberOfCorrectAnswers => {
+      component.score$.subscribe(numberOfCorrectAnswers => {
         expect(numberOfCorrectAnswers).toEqual(10);
       });
     });
@@ -103,27 +103,7 @@ describe('GuessrWrapperComponent', () => {
         expect(numberOfQuestionsAked).toEqual(20);
       });
     });
-  })
-
-  describe('handleCorrectAnswer', () => {
-    it('should dispatch CorrectAnswerAction', () => {
-      let dispatchSpyOn = spyOn(mockStore, 'dispatch');
-
-      component.handleCorrectAnswer();
-
-      expect(dispatchSpyOn).toHaveBeenCalledWith(CorrectAnswerAction());
-    });
-  })
-
-  describe('handleIncorrectAnswer', () => {
-    it('should dispatch CorrectAnswerAction', () => {
-      let dispatchSpyOn = spyOn(mockStore, 'dispatch');
-
-      component.handleIncorrectAnswer();
-
-      expect(dispatchSpyOn).toHaveBeenCalledWith(IncorrectAnswerAction());
-    });
-  })
+  });
 
   describe('getNextPokemon', () => {
     it('should dispatch LoadPokemonAction', () => {
@@ -133,5 +113,5 @@ describe('GuessrWrapperComponent', () => {
 
       expect(dispatchSpyOn).toHaveBeenCalledWith(LoadPokemonAction());
     });
-  })
+  });
 });
